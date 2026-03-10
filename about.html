@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Laith Al-Jaouni</title>
+  <meta name="description" content="Biomedical engineer turned software developer. Background in tissue engineering, now building AI platforms and scientific software.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="projects/index.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- About Hero -->
+  <section class="section" style="padding-top:calc(var(--nav-height) + var(--space-3xl))">
+    <div class="container">
+      <div class="about-preview">
+        <div class="about-preview__text">
+          <p class="section__label">About Me</p>
+          <h1 class="section__title">Scientist turned engineer.</h1>
+          <p>
+            I started my career in a tissue engineering lab at Virginia Tech, studying how astrocytes
+            remodel brain tissue after traumatic injury. I spent my days synthesizing hydrogels,
+            running atomic force microscopy, and staining cells for fluorescence imaging. That
+            experience taught me how to think about complex systems, design rigorous experiments,
+            and work across disciplines.
+          </p>
+          <p>
+            After finishing my M.S. (4.0 GPA, Summa Cum Laude), I joined Meso Scale Diagnostics,
+            where the work shifted from bench science to building the software and automation systems
+            that power diagnostics R&D. I've since written 166,000+ lines of production code across
+            12+ projects — from full-stack lab information management systems to embedded motion
+            controllers to AI platforms integrating 100+ LLM providers.
+          </p>
+          <p>
+            What drives me is building tools for domains where the problems are real and the stakes
+            are high. Clinical data, laboratory instruments, scientific workflows — these aren't toy
+            problems, and they benefit from engineers who understand the science underneath.
+          </p>
+        </div>
+        <div>
+          <!-- Placeholder for headshot -->
+          <div style="width:100%;aspect-ratio:3/4;background:var(--gray-100);border-radius:var(--border-radius);display:flex;align-items:center;justify-content:center">
+            <span class="text-muted text-sm">Headshot placeholder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Expertise</p>
+        <h2 class="section__title">What I Work With</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3 class="skill-category__title">AI / Machine Learning</h3>
+          <p class="skill-category__items">
+            PyTorch, XGBoost, scikit-learn, Optuna, MLflow, SHAP, PatchTST transformers,
+            LiteLLM (100+ providers), RAG, vector embeddings, pgvector
+          </p>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category__title">Full-Stack Development</h3>
+          <p class="skill-category__items">
+            Python, TypeScript, FastAPI, React 18, PostgreSQL, SQLAlchemy, Vite,
+            TailwindCSS, Docker, 300+ REST endpoints built
+          </p>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category__title">Scientific Computing</h3>
+          <p class="skill-category__items">
+            OpenCV, Numba JIT (20-100x speedup), NumPy, SciPy, Pandas,
+            signal processing, image alignment, statistical analysis
+          </p>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category__title">Clinical / Biomedical</h3>
+          <p class="skill-category__items">
+            EHR data, physiological waveforms, immunoassays, FDA-regulated environments,
+            tissue engineering, immunofluorescence, AFM, rheology
+          </p>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category__title">Embedded Systems</h3>
+          <p class="skill-category__items">
+            C++, ESP32/Arduino, stepper motor control, H-Bot kinematics,
+            custom serial protocols, PyQt5 GUIs
+          </p>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category__title">Lab Automation</h3>
+          <p class="skill-category__items">
+            Tecan Freedom EVO (certified), Parsec 5000, plate readers (SQ120, Q60),
+            liquid handling, IQ/OQ/PQ validation
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Timeline -->
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Experience</p>
+        <h2 class="section__title">Where I've Worked</h2>
+      </div>
+      <ul class="timeline">
+        <li class="timeline__item">
+          <p class="timeline__role">Engineer, Research Scientist</p>
+          <p class="timeline__company">Meso Scale Diagnostics</p>
+          <p class="timeline__dates">July 2024 &ndash; Present</p>
+          <p class="timeline__desc">
+            Full-stack software, AI platforms, embedded systems, and computational image processing
+            for diagnostics R&D. Built MesoFlow LIMS (~55K LOC), HyperSight SaaS platform (64K+ LOC),
+            and multiple lab automation tools.
+          </p>
+        </li>
+        <li class="timeline__item">
+          <p class="timeline__role">Engineer, Assay Automation</p>
+          <p class="timeline__company">Meso Scale Diagnostics</p>
+          <p class="timeline__dates">June 2023 &ndash; June 2024</p>
+          <p class="timeline__desc">
+            Parsec R5000 system check development, lab automation tooling, microfluidic systems design,
+            and instrument validation. Reduced FSE training time by 50-100%.
+          </p>
+        </li>
+        <li class="timeline__item">
+          <p class="timeline__role">Graduate Research Assistant</p>
+          <p class="timeline__company">Virginia Tech</p>
+          <p class="timeline__dates">Aug 2022 &ndash; May 2023</p>
+          <p class="timeline__desc">
+            NSF-funded thesis on astrocyte-ECM interactions following TBI. Tissue engineering,
+            atomic force microscopy, rheology, and immunofluorescence imaging.
+          </p>
+        </li>
+        <li class="timeline__item">
+          <p class="timeline__role">R&D Engineer</p>
+          <p class="timeline__company">QuidelOrtho</p>
+          <p class="timeline__dates">May 2022 &ndash; Aug 2022</p>
+          <p class="timeline__desc">
+            R&D engineering internship in in vitro diagnostics (IVD).
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Education</p>
+        <h2 class="section__title">Academic Background</h2>
+      </div>
+      <div class="skills-grid" style="grid-template-columns:1fr 1fr">
+        <div class="skill-category">
+          <h3 class="skill-category__title">M.S. Biomedical Engineering</h3>
+          <p class="skill-category__items">
+            Virginia Tech &ndash; Wake Forest &middot; May 2023<br>
+            <strong>GPA: 4.0 &middot; Summa Cum Laude</strong><br>
+            Thesis: <em>In Vitro Astrocyte Remodeling of Extracellular Matrix Following Mild Traumatic Brain Injury</em><br>
+            Advisor: Dr. Scott Verbridge &middot; NSF Award 2141291
+          </p>
+        </div>
+        <div class="skill-category">
+          <h3 class="skill-category__title">B.S. Biomedical Engineering</h3>
+          <p class="skill-category__items">
+            Virginia Tech &middot; May 2022<br>
+            <strong>GPA: 3.87 &middot; Summa Cum Laude</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

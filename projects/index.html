@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Laith Al-Jaouni</title>
+  <meta name="description" content="Selected projects: AI platforms, clinical ML, scientific software, tissue engineering research, and embedded systems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="../index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="index.html" class="active">Projects</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="section" style="padding-top:calc(var(--nav-height) + var(--space-3xl))">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Projects</p>
+        <h1 class="section__title">Things I've Built</h1>
+        <p class="section__desc">
+          A curated selection from 12+ major projects spanning AI/ML, scientific software,
+          clinical data, and embedded systems.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Grad Research -->
+        <a href="grad-research.html" class="project-card" style="text-decoration:none;color:inherit">
+          <img src="../assets/images/grad-research/01_hero_reactive_astrocyte.jpeg" alt="Fluorescence microscopy of a reactive astrocyte" class="project-card__img">
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag tag--green">Tissue Engineering</span>
+              <span class="tag">Research</span>
+              <span class="tag tag--navy">M.S. Thesis</span>
+            </div>
+            <h3 class="project-card__title">Astrocyte TBI Research</h3>
+            <p class="project-card__desc">
+              NSF-funded thesis investigating how brain cells mechanically remodel their
+              environment after simulated concussion injuries.
+            </p>
+            <p class="project-card__metric">AFM &middot; Rheology &middot; Immunofluorescence &middot; NSF Funded</p>
+          </div>
+        </a>
+
+        <!-- HyperSight -->
+        <div class="project-card">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">AI/ML</span>
+              <span class="tag tag--navy">Full-Stack</span>
+              <span class="tag tag--green">SaaS</span>
+            </div>
+            <h3 class="project-card__title">HyperSight</h3>
+            <p class="project-card__desc">
+              Enterprise SaaS analytics platform with NL-to-SQL, RAG-enhanced AI,
+              and support for 100+ LLM providers. Built in 12 weeks.
+            </p>
+            <p class="project-card__metric">64,300+ LOC &middot; 100+ REST endpoints &middot; 370+ tests</p>
+          </div>
+        </div>
+
+        <!-- DARPA -->
+        <div class="project-card">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">Clinical ML</span>
+              <span class="tag tag--green">Healthcare AI</span>
+            </div>
+            <h3 class="project-card__title">DARPA Triage Challenge</h3>
+            <p class="project-card__desc">
+              End-to-end ML system predicting life-saving interventions from multi-modal
+              clinical data across two Level-1 trauma centers.
+            </p>
+            <p class="project-card__metric">0.938 AUROC &middot; 327 GB data &middot; 7,287 patients</p>
+          </div>
+        </div>
+
+        <!-- MesoFlow -->
+        <div class="project-card">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag tag--green">Life Sciences</span>
+              <span class="tag tag--navy">Full-Stack</span>
+            </div>
+            <h3 class="project-card__title">MesoFlow LIMS</h3>
+            <p class="project-card__desc">
+              Laboratory information management system for ECL bioassay experiments
+              with computational image processing pipeline.
+            </p>
+            <p class="project-card__metric">~55,000 LOC &middot; 20-100x speedup via Numba JIT</p>
+          </div>
+        </div>
+
+        <!-- Jira AI PM -->
+        <div class="project-card">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">AI/Automation</span>
+              <span class="tag tag--navy">Productivity</span>
+            </div>
+            <h3 class="project-card__title">Jira AI PM</h3>
+            <p class="project-card__desc">
+              AI-powered tool that transforms meeting transcripts into structured Jira tickets
+              with intelligent duplicate detection.
+            </p>
+            <p class="project-card__metric">70-80% reduction in manual task creation</p>
+          </div>
+        </div>
+
+        <!-- PlateHandler -->
+        <div class="project-card">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag tag--navy">Embedded</span>
+              <span class="tag">C++</span>
+            </div>
+            <h3 class="project-card__title">PlateHandler Motion Control</h3>
+            <p class="project-card__desc">
+              5-axis embedded motion control system for laboratory plate handling
+              with H-Bot kinematics and collision detection.
+            </p>
+            <p class="project-card__metric">~4,500 LOC &middot; ESP32 &middot; PyQt5 GUI</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

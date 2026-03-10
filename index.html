@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laith Al-Jaouni | Biomedical Engineer & Software Developer</title>
+  <meta name="description" content="Biomedical engineer turned software developer. Building AI platforms, scientific software, and clinical ML systems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container">
+      <a href="index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects/index.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__content">
+        <span class="hero__label">Biomedical Engineer & Software Developer</span>
+        <h1 class="hero__title">I build software where science meets engineering.</h1>
+        <p class="hero__subtitle">
+          From bench work in tissue engineering to building AI platforms and clinical ML systems.
+          M.S. Biomedical Engineering, 166K+ lines of production code, and a knack for
+          making complex scientific workflows actually work.
+        </p>
+        <div class="hero__cta">
+          <a href="projects/index.html" class="btn btn--primary">View Projects</a>
+          <a href="about.html" class="btn btn--outline">About Me</a>
+          <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" class="btn btn--outline" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">Featured Work</p>
+        <h2 class="section__title">Selected Projects</h2>
+        <p class="section__desc">A few things I've built — from AI platforms to clinical ML to tissue engineering research.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <a href="projects/grad-research.html" class="project-card" style="text-decoration:none;color:inherit">
+          <img src="assets/images/grad-research/01_hero_reactive_astrocyte.jpeg" alt="Fluorescence microscopy of a reactive astrocyte" class="project-card__img">
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag tag--green">Tissue Engineering</span>
+              <span class="tag">Research</span>
+            </div>
+            <h3 class="project-card__title">Astrocyte TBI Research</h3>
+            <p class="project-card__desc">
+              NSF-funded M.S. thesis investigating how brain cells remodel their environment after simulated concussion injuries.
+            </p>
+            <p class="project-card__metric">AFM, Rheology, Immunofluorescence</p>
+          </div>
+        </a>
+
+        <div class="project-card">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">AI/ML</span>
+              <span class="tag tag--navy">Full-Stack</span>
+            </div>
+            <h3 class="project-card__title">HyperSight</h3>
+            <p class="project-card__desc">
+              Full-stack SaaS analytics platform with natural language to SQL, RAG-enhanced AI, and 100+ LLM provider support.
+            </p>
+            <p class="project-card__metric">64,300+ LOC &middot; 100+ REST endpoints</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">Clinical ML</span>
+              <span class="tag tag--green">Healthcare AI</span>
+            </div>
+            <h3 class="project-card__title">DARPA Triage Challenge</h3>
+            <p class="project-card__desc">
+              End-to-end ML system predicting life-saving interventions from 327 GB of multi-modal clinical data across 7,287 patients.
+            </p>
+            <p class="project-card__metric">0.938 AUROC &middot; 25 prediction targets</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:var(--space-2xl)">
+        <a href="projects/index.html" class="btn btn--outline">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="about-preview">
+        <div class="about-preview__text">
+          <p class="section__label">About</p>
+          <h2 class="section__title">Scientist turned engineer.</h2>
+          <p>
+            I started in a tissue engineering lab at Virginia Tech, studying how brain cells respond to
+            traumatic injury. That work gave me a deep appreciation for complex systems and rigorous
+            experimental design. Now I apply that same mindset to software — building tools that handle
+            real scientific and clinical data, not toy problems.
+          </p>
+          <p>
+            Currently at Meso Scale Diagnostics, where I build everything from laboratory information
+            management systems to embedded motion controllers to AI platforms. I like problems where
+            domain knowledge actually matters.
+          </p>
+          <a href="about.html" class="btn btn--outline" style="margin-top:var(--space-md)">Read More</a>
+        </div>
+        <div>
+          <ul class="about-preview__highlights">
+            <li><strong>M.S. Biomedical Engineering</strong> &mdash; Virginia Tech, 4.0 GPA</li>
+            <li><strong>166,000+ lines</strong> of production code across 12+ projects</li>
+            <li><strong>Full-stack</strong> &mdash; FastAPI, React, PostgreSQL, Docker</li>
+            <li><strong>AI/ML</strong> &mdash; PyTorch, XGBoost, LLM integration, RAG</li>
+            <li><strong>Scientific</strong> &mdash; image processing, clinical data, lab automation</li>
+            <li><strong>Embedded</strong> &mdash; ESP32/C++, motion control, serial protocols</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
