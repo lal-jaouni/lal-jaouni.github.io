@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jira AI PM | Laith Al-Jaouni</title>
+  <meta name="description" content="AI-powered project management tool that transforms meeting transcripts into structured Jira tickets with semantic duplicate detection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="../index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="index.html" class="active">Projects</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <a href="index.html" class="project-hero__back">&larr; All Projects</a>
+      <h1 class="project-hero__title">Jira AI PM</h1>
+      <p class="project-hero__subtitle">
+        An AI-powered project management tool that turns meeting transcripts into structured
+        Jira tickets. Paste in your meeting notes, and the system extracts action items, detects
+        duplicates semantically, and creates tickets with human-in-the-loop approval.
+      </p>
+      <div class="project-hero__meta">
+        <div class="project-meta__item">
+          <strong>Role</strong>
+          Sole Developer
+        </div>
+        <div class="project-meta__item">
+          <strong>Scale</strong>
+          10,000+ lines of code
+        </div>
+        <div class="project-meta__item">
+          <strong>Stack</strong>
+          FastAPI, React, PostgreSQL, Celery
+        </div>
+        <div class="project-meta__item">
+          <strong>AI</strong>
+          Multi-LLM, sentence-transformers, pgvector
+        </div>
+        <div class="project-meta__item">
+          <strong>Key Result</strong>
+          70-80% less manual task creation
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="section">
+    <div class="container">
+      <div class="project-content">
+
+        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
+          <span style="color:var(--gray-400);font-size:0.9rem">Screenshots coming soon</span>
+        </div>
+
+        <h2>The Problem</h2>
+        <p>
+          After every meeting, someone has to manually translate discussion into action items,
+          check whether those items already exist somewhere in Jira, write up tickets with the
+          right context, and assign them. It's tedious, error-prone, and leads to duplicate work
+          when the same task gets created from different meetings.
+        </p>
+
+        <h2>What I Built</h2>
+
+        <h3>Transcript Processing</h3>
+        <p>
+          Upload a meeting transcript (or paste raw notes), and the system uses an LLM to extract
+          structured action items &mdash; task descriptions, priorities, assignee suggestions, and
+          relevant context. The extraction prompt is tuned to pull out commitments and next steps,
+          not just topics discussed.
+        </p>
+
+        <h3>Semantic Duplicate Detection</h3>
+        <p>
+          Before creating any ticket, the system checks for semantic similarity against existing
+          Jira issues. Using 384-dimensional embeddings (all-MiniLM-L6-v2) stored in pgvector,
+          it computes cosine similarity to surface potential duplicates &mdash; even when they're
+          worded completely differently. This cut duplicate tickets by roughly 50%.
+        </p>
+
+        <h3>Multi-LLM Support</h3>
+        <p>
+          Supports three LLM providers out of the box: Ollama (for local/private use), OpenAI,
+          and Anthropic. Switching between them is a configuration change, so teams can choose
+          based on their privacy requirements and budget.
+        </p>
+
+        <h3>Human-in-the-Loop Workflow</h3>
+        <p>
+          Nothing goes to Jira without approval. Extracted tasks are presented for review &mdash;
+          edit descriptions, adjust priorities, dismiss false positives, resolve duplicates &mdash;
+          then batch-create with one click. The system handles the Jira API integration, credential
+          encryption, and ticket formatting.
+        </p>
+
+        <h3>Async Processing</h3>
+        <p>
+          Long transcripts and LLM calls are processed asynchronously through Celery with Redis
+          as the message broker. The UI stays responsive while tasks are being extracted and
+          embeddings computed in the background.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <div class="skills-grid" style="margin-top:var(--space-lg)">
+          <div class="skill-category">
+            <h3 class="skill-category__title">Backend</h3>
+            <p class="skill-category__items">
+              Python 3.11+, FastAPI, SQLAlchemy 2.0, Pydantic,
+              Celery, Redis, 20+ REST endpoints, JWT auth
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Frontend</h3>
+            <p class="skill-category__items">
+              TypeScript, React 18, Vite, TailwindCSS,
+              approval workflows, real-time status updates
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">AI / NLP</h3>
+            <p class="skill-category__items">
+              Ollama, OpenAI, Anthropic, sentence-transformers,
+              384-dim embeddings, pgvector, cosine similarity
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Infrastructure</h3>
+            <p class="skill-category__items">
+              PostgreSQL 15, Docker Compose, Nginx,
+              Jira REST API, OAuth 2.0, encrypted credentials
+            </p>
+          </div>
+        </div>
+
+        <h2>What This Taught Me</h2>
+        <p>
+          The most useful AI features aren't the ones that automate everything &mdash; they're
+          the ones that handle the tedious parts while keeping humans in control of decisions.
+          The duplicate detection alone saves more time than the task extraction, because catching
+          a duplicate before it's created prevents confusion downstream. Building the approval
+          workflow taught me that trust in AI systems comes from transparency, not accuracy alone.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

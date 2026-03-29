@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlateHandler Motion Control | Laith Al-Jaouni</title>
+  <meta name="description" content="5-axis embedded motion control system for laboratory plate handling with H-Bot kinematics, collision detection, and PyQt5 operator interface.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="../index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="index.html" class="active">Projects</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <a href="index.html" class="project-hero__back">&larr; All Projects</a>
+      <h1 class="project-hero__title">PlateHandler Motion Control</h1>
+      <p class="project-hero__subtitle">
+        A 5-axis embedded motion control system for laboratory plate handling automation.
+        Custom firmware on an ESP32 with H-Bot kinematics, real-time collision detection,
+        and a desktop operator interface &mdash; from stepper drivers to GUI.
+      </p>
+      <div class="project-hero__meta">
+        <div class="project-meta__item">
+          <strong>Role</strong>
+          Sole Developer &amp; Architect
+        </div>
+        <div class="project-meta__item">
+          <strong>Organization</strong>
+          Meso Scale Diagnostics
+        </div>
+        <div class="project-meta__item">
+          <strong>Scale</strong>
+          ~4,500 lines of code
+        </div>
+        <div class="project-meta__item">
+          <strong>Platform</strong>
+          ESP32 / C++ &amp; Python
+        </div>
+        <div class="project-meta__item">
+          <strong>Axes</strong>
+          5 (X, Y, Z, Theta, Gripper)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="section">
+    <div class="container">
+      <div class="project-content">
+
+        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
+          <span style="color:var(--gray-400);font-size:0.9rem">Photos coming soon</span>
+        </div>
+
+        <h2>The Problem</h2>
+        <p>
+          Laboratory plate handling sounds simple until you actually try to automate it. You need
+          precise XY positioning (plates have to land exactly in instrument nests), Z-axis control
+          for lifting and lowering, a gripper that can rotate plates to different orientations,
+          and all of this has to happen without crashing into anything. Off-the-shelf solutions
+          either cost too much or don't fit the specific geometry of the instrument layout.
+        </p>
+
+        <h2>What I Built</h2>
+
+        <h3>5-Layer Architecture</h3>
+        <p>
+          Designed the firmware as a clean five-layer stack: low-level stepper drivers at the bottom,
+          then axis abstraction, kinematics engine, motion planning, and high-level command
+          interface at the top. Each layer only talks to its neighbors, making it possible to
+          swap out hardware (different motors, different drivers) without touching the motion logic.
+        </p>
+
+        <h3>H-Bot Kinematics</h3>
+        <p>
+          The XY stage uses an H-Bot belt configuration where two motors work together to produce
+          planar motion. I implemented the forward and inverse kinematics transformations with
+          configurable motor inversion and per-axis calibration (steps/mm), so the system can be
+          tuned to any mechanical setup.
+        </p>
+
+        <h3>Theta-Gripper Coupling</h3>
+        <p>
+          The gripper and rotation axes are mechanically coupled &mdash; rotating the plate also
+          changes the jaw opening. I modeled this relationship (<code>jaw = Gmm - C &times; &Theta;deg</code>)
+          and built a coupling engine that compensates automatically, so operators can rotate and
+          grip independently without worrying about the mechanical linkage.
+        </p>
+
+        <h3>Safety &amp; Collision Detection</h3>
+        <p>
+          Built a multi-level safety system: hardware limit switches at the physical boundary,
+          software limits for the configured workspace, polygon-based boundary validation using a
+          ray-casting algorithm, and trajectory pre-validation that checks the entire planned path
+          before any motor moves. If anything fails at any level, the system stops.
+        </p>
+
+        <h3>Motion Planning</h3>
+        <p>
+          Implemented trapezoidal velocity profiling with configurable acceleration and deceleration
+          ramps. A producer-consumer command queue ensures deterministic execution order, and
+          per-axis speed controls allow global and individual overrides for different operation types.
+        </p>
+
+        <h3>Operator Interface</h3>
+        <p>
+          Built a PyQt5 desktop GUI with real-time position feedback, jog controls for each axis,
+          serial communication management, and a command interface for scripted operations. The
+          async I/O architecture keeps the UI responsive during long motion sequences.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <div class="skills-grid" style="margin-top:var(--space-lg)">
+          <div class="skill-category">
+            <h3 class="skill-category__title">Firmware</h3>
+            <p class="skill-category__items">
+              C++, ESP32/Arduino, stepper motor drivers,
+              5-layer HAL, 15+ source files
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Kinematics</h3>
+            <p class="skill-category__items">
+              H-Bot forward/inverse transforms, theta-gripper coupling,
+              per-axis calibration, step/mm conversions
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Safety Systems</h3>
+            <p class="skill-category__items">
+              Ray-casting collision detection, polygon workspace bounds,
+              trajectory pre-validation, multi-level fail-safes
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Desktop GUI</h3>
+            <p class="skill-category__items">
+              Python, PyQt5, serial communication, async I/O,
+              real-time position display, jog controls
+            </p>
+          </div>
+        </div>
+
+        <h2>What This Taught Me</h2>
+        <p>
+          Embedded work forces a different kind of discipline. There's no debugger stepping through
+          a motor in motion, no rollback on a collision. Every motion command has to be validated
+          before it executes, and the safety system has to work at every level independently. This
+          project gave me a deep appreciation for layered abstraction &mdash; the same firmware
+          runs unchanged whether you're jogging an axis by hand or executing a scripted pick-and-place
+          sequence, because the command interface doesn't know or care what's above it.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

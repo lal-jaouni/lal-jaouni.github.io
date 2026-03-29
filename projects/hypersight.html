@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HyperSight | Laith Al-Jaouni</title>
+  <meta name="description" content="Full-stack SaaS analytics platform with NL-to-SQL, RAG-enhanced AI, and 100+ LLM provider support. Built from scratch in 12 weeks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="../index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="index.html" class="active">Projects</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <a href="index.html" class="project-hero__back">&larr; All Projects</a>
+      <h1 class="project-hero__title">HyperSight</h1>
+      <p class="project-hero__subtitle">
+        A full-stack SaaS analytics platform built from scratch in 12 weeks. Natural language
+        queries, RAG-enhanced AI insights, and support for 100+ LLM providers &mdash; designed to
+        make data accessible to non-technical users.
+      </p>
+      <div class="project-hero__meta">
+        <div class="project-meta__item">
+          <strong>Role</strong>
+          Sole Developer &amp; Architect
+        </div>
+        <div class="project-meta__item">
+          <strong>Timeline</strong>
+          12 weeks, 13 MVPs across 9 phases
+        </div>
+        <div class="project-meta__item">
+          <strong>Scale</strong>
+          64,300+ lines of code
+        </div>
+        <div class="project-meta__item">
+          <strong>Stack</strong>
+          FastAPI, React, PostgreSQL, Docker
+        </div>
+        <div class="project-meta__item">
+          <strong>AI</strong>
+          LiteLLM, pgvector, RAG, NL2SQL
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="section">
+    <div class="container">
+      <div class="project-content">
+
+        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
+          <span style="color:var(--gray-400);font-size:0.9rem">Screenshots coming soon</span>
+        </div>
+
+        <h2>The Problem</h2>
+        <p>
+          Most analytics platforms assume technical users. They require SQL knowledge, familiarity
+          with data pipelines, and comfort navigating complex dashboards. For organizations where
+          the people making decisions aren't the same people writing queries, that's a wall.
+        </p>
+        <p>
+          HyperSight was designed to remove that wall &mdash; let anyone ask questions of their data
+          in plain English and get real, trustworthy answers backed by the actual database.
+        </p>
+
+        <h2>What I Built</h2>
+        <p>
+          A complete enterprise platform covering data ingestion, transformation, analytics,
+          AI-powered insights, and collaboration &mdash; all built solo across 13 MVPs in 9 development phases.
+        </p>
+
+        <h3>Natural Language to SQL</h3>
+        <p>
+          Users type questions like "What were our top 10 products last quarter?" and the system
+          translates that into validated SQL, executes it against their warehouse, and returns
+          formatted results. The NL2SQL pipeline includes schema introspection, query validation,
+          and result caching.
+        </p>
+
+        <h3>RAG Knowledge Base</h3>
+        <p>
+          Built a retrieval-augmented generation system using pgvector embeddings. Users can index
+          internal documents (63+ in production), and the AI chat interface draws on both the knowledge
+          base and live database context to answer questions with citations.
+        </p>
+
+        <h3>Multi-Provider LLM Support</h3>
+        <p>
+          Integrated 100+ LLM providers through LiteLLM, giving organizations flexibility to use
+          OpenAI, Anthropic, local models, or anything in between. Provider switching is seamless
+          and configurable per-user.
+        </p>
+
+        <h3>Full Analytics Suite</h3>
+        <p>
+          Beyond AI features, the platform includes dashboards with KPI tracking, exploratory data
+          analysis, time-series forecasting (Facebook Prophet), A/B testing with statistical
+          rigor, collaboration tools, and a data dictionary for institutional knowledge.
+        </p>
+
+        <h2>Architecture</h2>
+        <p>
+          The backend runs on FastAPI with async SQLAlchemy, serving 100+ REST endpoints across
+          24 routers. The frontend is TypeScript React with strict mode, 112 components, and a
+          59% optimized bundle (108 chunks down to 44, under 220 KB). Six Docker containers
+          orchestrate the full stack.
+        </p>
+
+        <div class="skills-grid" style="margin-top:var(--space-lg);grid-template-columns:1fr 1fr">
+          <div class="skill-category">
+            <h3 class="skill-category__title">Backend</h3>
+            <p class="skill-category__items">
+              Python 3.11+, FastAPI, SQLAlchemy (async), Pydantic, Alembic,
+              100+ endpoints, 28 service classes, 370+ tests
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Frontend</h3>
+            <p class="skill-category__items">
+              TypeScript 5.3 (strict), React 18, Vite 5.0, Material-UI v5,
+              112 components, Zustand, TanStack Query v5, AG Grid
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">AI / ML</h3>
+            <p class="skill-category__items">
+              LiteLLM (100+ providers), pgvector, sentence-transformers,
+              RAG pipeline, NL2SQL, Facebook Prophet, SciPy
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Infrastructure</h3>
+            <p class="skill-category__items">
+              PostgreSQL 15, Docker (6 containers), GitHub Actions CI/CD,
+              Sentry error tracking, dbt transformations
+            </p>
+          </div>
+        </div>
+
+        <h2>What This Taught Me</h2>
+        <p>
+          Building an entire SaaS platform solo in 12 weeks forced clarity on what matters at each
+          stage. I learned to make architectural decisions that would survive rapid iteration &mdash;
+          choosing async-first patterns, keeping services loosely coupled, and investing early in
+          testing (370+ tests, >80% coverage) so that later phases didn't break earlier ones.
+          The AI integration work also deepened my understanding of how to make LLM-powered features
+          reliable enough for production use.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

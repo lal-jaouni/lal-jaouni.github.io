@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARPA Triage Challenge | Laith Al-Jaouni</title>
+  <meta name="description" content="End-to-end ML system predicting life-saving clinical interventions from 327 GB of multi-modal data across 7,287 trauma patients.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="../index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="index.html" class="active">Projects</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <a href="index.html" class="project-hero__back">&larr; All Projects</a>
+      <h1 class="project-hero__title">DARPA Triage Challenge</h1>
+      <p class="project-hero__subtitle">
+        An end-to-end machine learning system that predicts life-saving clinical interventions
+        from multi-modal trauma data. Built for the DARPA Triage Challenge through MSAI Labs,
+        processing 327 GB of data across 7,287 patients from two Level-1 trauma centers.
+      </p>
+      <div class="project-hero__meta">
+        <div class="project-meta__item">
+          <strong>Role</strong>
+          Sole Developer &amp; Architect
+        </div>
+        <div class="project-meta__item">
+          <strong>Affiliation</strong>
+          MSAI Labs (startup)
+        </div>
+        <div class="project-meta__item">
+          <strong>Duration</strong>
+          January 2026 &ndash; Present
+        </div>
+        <div class="project-meta__item">
+          <strong>Data Scale</strong>
+          327 GB &middot; 7,287 patients
+        </div>
+        <div class="project-meta__item">
+          <strong>Best AUROC</strong>
+          0.938 (mean across 25 targets)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="section">
+    <div class="container">
+      <div class="project-content">
+
+        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
+          <span style="color:var(--gray-400);font-size:0.9rem">Screenshots coming soon</span>
+        </div>
+
+        <h2>The Problem</h2>
+        <p>
+          In trauma care, the first minutes matter most. Paramedics and first responders have to
+          make rapid decisions about which interventions a patient needs &mdash; intubation, blood
+          transfusion, chest tube, surgery &mdash; often with incomplete information. The DARPA
+          Triage Challenge asks: can machine learning predict which interventions a patient will
+          need, using data available in the field?
+        </p>
+        <p>
+          The data is messy, multi-modal, and massive. Electronic health records, physiological
+          waveforms (ECG, PPG, arterial blood pressure, capnography), lab results, vitals, and
+          clinical notes &mdash; all collected across two Level-1 trauma centers with different
+          recording systems and conventions.
+        </p>
+
+        <h2>What I Built</h2>
+
+        <h3>Data Pipeline &amp; Feature Engineering</h3>
+        <p>
+          Processed 327 GB of raw clinical data into a structured ML-ready format. This involved
+          parsing 179,415 time segments across 7,287 patients, building a signal quality assessment
+          framework (7 metrics per signal type, 353,192 quality records), and engineering 433+
+          features across three tiers: minimal (30), basic (110), and full (433).
+        </p>
+        <p>
+          A key early finding: 56% of arterial blood pressure data was physiologically implausible.
+          Discovering and handling that required building custom quality scoring for each signal type &mdash;
+          SNR, kurtosis, zero-crossing rate, template matching, spectral quality, and physiological
+          plausibility checks.
+        </p>
+
+        <h3>Tabular Classification</h3>
+        <p>
+          The core prediction system uses per-target XGBoost models with Bayesian hyperparameter
+          optimization (Optuna, 50 trials per target). Across 25 ICD-compliant intervention targets,
+          the system achieves a mean AUROC of 0.938, with 22 of 25 targets above 0.90.
+        </p>
+
+        <h3>Waveform Deep Learning</h3>
+        <p>
+          For physiological waveform analysis, I built a PatchTST transformer (2.1M parameters)
+          and a U-Net baseline for arterial blood pressure prediction. The two-stage calibration
+          pipeline (frozen encoder + XGBoost head) achieves 0.952 waveform correlation with AAMI-compliant
+          blood pressure error (SBP 4.9 mmHg, DBP 2.7 mmHg). Pre-training on 5.09M PulseDB
+          segments with a U2-Net (44M parameters) established the foundation for transfer learning.
+        </p>
+
+        <h3>Signal Processing</h3>
+        <p>
+          Developed processing pipelines for four signal types: PPG, ECG, arterial blood pressure,
+          and capnography. Each pipeline handles ADC-to-physical unit calibration, peak detection,
+          beat segmentation, and feature extraction including 168 wavelet features via discrete
+          wavelet transform and 44 clinical features from waveform morphology.
+        </p>
+
+        <h2>Experiment Rigor</h2>
+        <p>
+          Ran 16 formal experiments with ablation analysis and produced 13 executive reports.
+          Every modeling decision was tracked through MLflow, with SHAP-based interpretability
+          for clinical validation. The codebase includes 437+ test cases across 26 files (4,726
+          lines of test code) and 100+ pages of documentation.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <div class="skills-grid" style="margin-top:var(--space-lg)">
+          <div class="skill-category">
+            <h3 class="skill-category__title">ML / Deep Learning</h3>
+            <p class="skill-category__items">
+              PyTorch, XGBoost, scikit-learn, Optuna (Bayesian optimization),
+              MLflow, SHAP, PatchTST, U-Net, U2-Net
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Signal Processing</h3>
+            <p class="skill-category__items">
+              NeuroKit2, discrete wavelet transform, peak detection,
+              beat segmentation, quality scoring, spectral analysis
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Data Engineering</h3>
+            <p class="skill-category__items">
+              HDF5 (h5py), Parquet, Pandas, NumPy, 433+ engineered features,
+              multi-tier feature architecture
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Infrastructure</h3>
+            <p class="skill-category__items">
+              AWS SageMaker, S3, Python 3.10, pytest, mypy, Ruff,
+              11,675 lines across 40 modules
+            </p>
+          </div>
+        </div>
+
+        <h2>What This Taught Me</h2>
+        <p>
+          Working with real clinical data is fundamentally different from clean ML benchmarks.
+          More than half my time went into understanding the data &mdash; discovering that most
+          ABP waveforms were unusable, building quality metrics that could quantify "trustworthy"
+          signals, and engineering features that capture clinical meaning rather than just
+          statistical patterns. The project reinforced that in healthcare ML, the data pipeline
+          is the model.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

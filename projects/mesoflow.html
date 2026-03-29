@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MesoFlow LIMS | Laith Al-Jaouni</title>
+  <meta name="description" content="Full-stack laboratory information management system for ECL bioassay experiments with computational image processing pipeline achieving 20-100x speedup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="../index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="index.html" class="active">Projects</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <a href="index.html" class="project-hero__back">&larr; All Projects</a>
+      <h1 class="project-hero__title">MesoFlow LIMS</h1>
+      <p class="project-hero__subtitle">
+        A full-stack laboratory information management system built for electrochemiluminescence
+        bioassay experiments. Covers the entire workflow from plate layout design through automated
+        image processing and quantitative reporting.
+      </p>
+      <div class="project-hero__meta">
+        <div class="project-meta__item">
+          <strong>Role</strong>
+          Sole Developer &amp; Architect
+        </div>
+        <div class="project-meta__item">
+          <strong>Organization</strong>
+          Meso Scale Diagnostics
+        </div>
+        <div class="project-meta__item">
+          <strong>Scale</strong>
+          ~55,000 lines of code
+        </div>
+        <div class="project-meta__item">
+          <strong>Stack</strong>
+          FastAPI, React, Numba, OpenCV
+        </div>
+        <div class="project-meta__item">
+          <strong>Key Result</strong>
+          20-100x image processing speedup
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="section">
+    <div class="container">
+      <div class="project-content">
+
+        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
+          <span style="color:var(--gray-400);font-size:0.9rem">Screenshots coming soon</span>
+        </div>
+
+        <h2>The Problem</h2>
+        <p>
+          Running ECL bioassay experiments involves a lot of moving parts: designing plate layouts,
+          tracking reagents, configuring instruments, processing raw images, and generating
+          quantitative results. Before MesoFlow, these steps were handled by a patchwork of
+          spreadsheets, standalone scripts, and manual bookkeeping &mdash; each experiment required
+          hours of data wrangling before you could even look at results.
+        </p>
+        <p>
+          The image processing piece was especially painful. Aligning spot grids on raw plate
+          images, correcting for reader-specific artifacts, and extracting per-spot intensities
+          required computational methods that were too slow for interactive use and too fragile
+          for batch processing.
+        </p>
+
+        <h2>What I Built</h2>
+
+        <h3>Experiment Lifecycle Management</h3>
+        <p>
+          A complete workflow system where scientists can design 96-well plate layouts with a
+          drag-and-click editor, configure multi-tab reagent settings, build step-by-step
+          experimental workflows, and track experiments from setup through completion with
+          automatic status tracking and validation.
+        </p>
+
+        <h3>Computational Image Processing Pipeline</h3>
+        <p>
+          The core technical challenge. Each plate image needs a precise grid alignment to extract
+          per-spot signal intensities. I built a two-phase grid search: a coarse pass (~13,000
+          iterations covering translation and rotation) followed by a fine pass (~7,700 iterations
+          at sub-pixel precision). Together, that's ~21,000 evaluations per image.
+        </p>
+        <p>
+          To make that practical, I optimized the alignment engine with Numba JIT compilation,
+          achieving 20-100x speedup over pure Python. The pipeline also handles MAD-based cosmic
+          ray detection, truncated circle masks for Kivu plate geometry, scale-aware processing
+          across 1x-16x binning levels, and reader-specific gain corrections for three different
+          instrument types (Q60, SQ120, S600).
+        </p>
+
+        <h3>Multi-Reader Support</h3>
+        <p>
+          Each MSD plate reader has different sensor geometries: the Q60 reads a single 1040&times;1040
+          sector, the SQ120 reads four 512&times;512 sectors, and the S600 reads sixteen sectors. MesoFlow
+          handles all three with reader-specific calibration, gain corrections, and spot factor
+          adjustments, producing consistent results across instruments.
+        </p>
+
+        <h3>Quantitative Analysis</h3>
+        <p>
+          Built a full scientific validation suite: binning experiments across 5 levels on 2 readers
+          (570+ per-image measurements), SNR and detection limit calculations, coefficient of
+          variation analysis, and gain cross-calibration. Results feed into 8+ publication-quality
+          plot types for reporting.
+        </p>
+
+        <h3>Hardware Integration</h3>
+        <p>
+          Integrated directly with the Mini Collet Dispenser via a custom serial driver (842 lines),
+          with step-by-step workflow execution, 5 concurrent instrument tabs, and operator tracking.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <div class="skills-grid" style="margin-top:var(--space-lg)">
+          <div class="skill-category">
+            <h3 class="skill-category__title">Backend</h3>
+            <p class="skill-category__items">
+              Python 3.12, FastAPI, Pydantic, 157+ REST endpoints,
+              244+ data models, 19 service modules, Parquet storage
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Frontend</h3>
+            <p class="skill-category__items">
+              React 18, TypeScript 5.6, Vite, TailwindCSS, shadcn/ui,
+              Plotly.js, 27 page components, 38 UI components
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Image Processing</h3>
+            <p class="skill-category__items">
+              Numba JIT (20-100x speedup), OpenCV, NumPy, SciPy,
+              Pillow, bilinear interpolation, FWHM analysis
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Testing &amp; Quality</h3>
+            <p class="skill-category__items">
+              pytest (139+ tests), Ruff, MyPy, pre-commit hooks,
+              HTTP Basic Auth with RBAC
+            </p>
+          </div>
+        </div>
+
+        <h2>What This Taught Me</h2>
+        <p>
+          MesoFlow taught me that scientific software lives or dies by how well it models the
+          actual workflow of the people using it. The hardest problems weren't algorithmic &mdash;
+          they were understanding why a bench scientist configures a plate layout the way they do,
+          why certain validation steps can't be skipped, and how to surface results in a way that
+          maps to how they think about their experiments. The Numba optimization work was technically
+          satisfying, but the real value was in making the whole system feel like a natural extension
+          of the lab workflow.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

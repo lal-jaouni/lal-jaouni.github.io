@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Intelligence Pipeline | Laith Al-Jaouni</title>
+  <meta name="description" content="Full-stack system for systematically identifying and scoring healthcare AI opportunities using 21+ signal collectors and a 9-dimension scoring model.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="../index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="index.html" class="active">Projects</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <a href="index.html" class="project-hero__back">&larr; All Projects</a>
+      <h1 class="project-hero__title">Market Intelligence Pipeline</h1>
+      <p class="project-hero__subtitle">
+        A full-stack system for systematically identifying and scoring healthcare AI opportunities.
+        Built 21+ signal collectors across Reddit, healthcare forums, FDA databases, funding sources, and advisor networks.
+        Evaluated 25+ opportunities using a 9-dimension scoring model. Built to answer: what are the best problems in healthcare AI right now?
+      </p>
+      <div class="project-hero__meta">
+        <div class="project-meta__item">
+          <strong>Role</strong>
+          Sole Developer & Architect
+        </div>
+        <div class="project-meta__item">
+          <strong>Duration</strong>
+          6 weeks (exploratory)
+        </div>
+        <div class="project-meta__item">
+          <strong>Signal Sources</strong>
+          21+ collectors
+        </div>
+        <div class="project-meta__item">
+          <strong>Tech Stack</strong>
+          Python, PostgreSQL, FastAPI, React, pgvector, LiteLLM
+        </div>
+        <div class="project-meta__item">
+          <strong>Key Result</strong>
+          Identified 5 PURSUE-level healthcare AI opportunities
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="section">
+    <div class="container">
+      <div class="project-content">
+
+        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
+          <span style="color:var(--gray-400);font-size:0.9rem">Dashboard visualization</span>
+        </div>
+
+        <h2>The Problem</h2>
+        <p>
+          I wanted to understand the healthcare AI landscape systematically. Which problems matter most to clinicians?
+          Where are founders actually building? What do investors think is happening? How mature is the regulatory understanding?
+          Where are the gaps between academic hype and clinical reality?
+        </p>
+        <p>
+          This isn't a new question, but most answers come from either consulting reports (expensive, delayed), venture
+          investors' portfolios (biased toward funding winners), or academic papers (out of touch with practice). I built a system to
+          collect diverse signals, weight them, and surface the genuine high-impact opportunities.
+        </p>
+
+        <h2>What I Built</h2>
+
+        <h3>21+ Signal Collectors</h3>
+        <p>
+          Automated data collection across multiple domains:
+        </p>
+        <ul>
+          <li><strong>Clinical pain:</strong> 11 Reddit subreddits (r/radiology, r/EHR, r/medicine), 4 healthcare professional forums (KevinMD, Physician's Weekly), FDA MAUDE database (adverse events), and Twitter healthcare conversations.</li>
+          <li><strong>Funding signals:</strong> Crunchbase healthcare AI deals (last 18 months), Series A/B healthcare funders, geographic clustering of activity.</li>
+          <li><strong>Regulatory signals:</strong> FDA 510(k) clearances by category, PMCF (post-market clinical follow-up) activity, De Novo submissions.</li>
+          <li><strong>Market signals:</strong> Google Trends for healthcare keywords, hiring announcements from health-tech companies, patent filings by category.</li>
+          <li><strong>Advisory signals:</strong> Expert consensus from 10 healthcare/business strategists using a structured evaluation framework (Thiel, Christensen, Ries, Moore, Kim, Ellis, Collins, Horowitz, Blank, Gil).</li>
+        </ul>
+        <p>
+          Each collector is modular (independent Python script), runs on a cron schedule, and stores raw signals in PostgreSQL.
+          Signals are versioned so I can track how sentiment changes over time.
+        </p>
+
+        <h3>9-Dimension Scoring Model</h3>
+        <p>
+          Not all signals are equal. I built a scoring framework that evaluates opportunities across:
+        </p>
+        <ul>
+          <li><strong>Pain Severity (0-10):</strong> How acute is the clinical problem? Data from clinician interviews, forum sentiment, frequency of mentions.</li>
+          <li><strong>Market Size (0-10):</strong> How many clinicians/patients affected? Derived from incidence/prevalence data.</li>
+          <li><strong>Regulatory Clarity (0-10):</strong> How clear is the pathway to approval? FDA guidance documents, predicate device availability, complexity of algorithm.</li>
+          <li><strong>Incumbent Moat (0-10):</strong> How entrenched are existing solutions? Switching costs, regulatory approvals required.</li>
+          <li><strong>Technical Feasibility (0-10):</strong> Do we have the data and methods to build this? Availability of training data, algorithmic maturity, infrastructure requirements.</li>
+          <li><strong>Capital Efficiency (0-10):</strong> How much capital is required to reach first revenue? Regulatory cost, development timeline, clinical validation.</li>
+          <li><strong>IP/Defensibility (0-10):</strong> Can you build a moat through patents, data, or novel methods? Prior art landscape, proprietary datasets.</li>
+          <li><strong>Funding Momentum (0-10):</strong> Is money flowing toward this? Recent deals, investor interest, founder activity.</li>
+          <li><strong>Advisory Consensus (0-10):</strong> What do experienced healthcare strategists think? Averaged expert ratings from multiple frameworks.</li>
+        </ul>
+        <p>
+          Each dimension is populated from multiple signal sources. If pain severity only comes from one source (e.g., Reddit), it's weighted lower.
+          If it shows up across clinician interviews, forum discussions, and FDA adverse event data, it's heavily weighted.
+        </p>
+
+        <h3>Signal Classification with LLMs</h3>
+        <p>
+          Raw signals (forum posts, Reddit comments, tweets) are noisy. I use multi-model LLM classification to extract structured insights:
+          Is this post about a real clinical problem or just complaining? What domain does it belong to? What's the sentiment?
+          Using LiteLLM, I support multiple LLM providers (OpenAI, Anthropic, Ollama) so the system can run with different models
+          or locally for privacy.
+        </p>
+
+        <h3>Opportunity Workbench</h3>
+        <p>
+          A React dashboard that surfaces:
+        </p>
+        <ul>
+          <li>All identified opportunities ranked by overall score.</li>
+          <li>Drill-down into each dimension with the underlying signals (which Reddit posts, which FDA documents, which expert views).</li>
+          <li>Signal timeline: how has sentiment/funding/regulatory activity changed over the last 3-6 months?</li>
+          <li>Related opportunities: which problems are clustered together, suggesting multiple solutions in one domain?</li>
+          <li>Recommendation engine: opportunities with high potential but low current founder activity (white spaces).</li>
+        </ul>
+        <p>
+          The dashboard is not a finished product, but a working tool for evaluation and hypothesis refinement.
+        </p>
+
+        <h3>Continuous Iteration</h3>
+        <p>
+          Every week, new signals are collected, re-scored, and opportunities re-ranked. This surfaces:
+          1) Which opportunities are growing in relevance (funding, founder activity, clinical mentions)?
+          2) Which were hot last quarter but are cooling (founder exit, regulatory setback)?
+          3) Which blind spots do I have (problems clinicians care about but venture hasn't noticed)?
+        </p>
+
+        <h2>Tech Stack</h2>
+        <div class="skills-grid" style="margin-top:var(--space-lg)">
+          <div class="skill-category">
+            <h3 class="skill-category__title">Backend & Data</h3>
+            <p class="skill-category__items">
+              Python 3.11+, FastAPI, PostgreSQL (pgvector for embeddings),
+              SQLAlchemy, Pydantic, async/await, 100+ REST endpoints
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Signal Collection</h3>
+            <p class="skill-category__items">
+              Pushshift API (Reddit), web scraping (Selenium, BeautifulSoup),
+              RSS feeds, Crunchbase API, Google Trends API, FDA OpenData
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">AI / Classification</h3>
+            <p class="skill-category__items">
+              LiteLLM (multi-provider), OpenAI, Anthropic Claude, Ollama,
+              sentence-transformers, pgvector, cosine similarity, Pydantic validation
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Frontend</h3>
+            <p class="skill-category__items">
+              React 18, TypeScript, Vite, TailwindCSS,
+              TanStack Query, Recharts (visualization), real-time updates
+            </p>
+          </div>
+        </div>
+
+        <h2>What This Revealed</h2>
+        <p>
+          Over 6 weeks of collection and analysis, I evaluated 25+ healthcare AI opportunities across 6,700+ signals.
+          Five emerged as "PURSUE-level" — high pain severity, clear regulatory pathways, reasonable capital efficiency, and weak incumbent moats:
+        </p>
+        <ul>
+          <li><strong>FDA Compliance for AI/ML SaMD:</strong> Founders are confused about algorithmic transparency requirements, change control, and post-market surveillance. Regulatory consulting in this space could reach initial revenue quickly (2-3 months of patient work).</li>
+          <li><strong>EHR Data Interoperability:</strong> Clinicians consistently complain about fragmented data. The regulatory picture (21st Century Cures Act) is finally clear. Technical moat possible through novel data architectures.</li>
+          <li><strong>Physiological Signal Processing at Scale:</strong> ECG/EEG/PPG processing is increasingly commoditized, but real-time clinical deployment (sub-100ms latency, edge devices) is still hard. Capital-efficient because you're not building a full clinical product, just the signal layer.</li>
+          <li><strong>Outcome Prediction from Unstructured Notes:</strong> Clinicians document everything in free text. AI can extract structured outcomes, but privacy/regulatory barriers exist. High pain (clinicians want this), unclear path (regulatory frameworks evolving).</li>
+          <li><strong>Clinical Trial Recruitment Optimization:</strong> Hugely underfunded problem. Trial failures are expensive. No obvious regulatory moat. Founder activity is emerging.</li>
+        </ul>
+
+        <h2>What This Taught Me</h2>
+        <p>
+          This project wasn't about building a startup. It was about understanding the landscape
+          at scale, surfacing what I should care about, and testing whether I could think like both
+          an engineer and an investor. Key lessons:
+        </p>
+        <ul>
+          <li><strong>Signal diversity matters more than volume.</strong> A single high-quality expert opinion often outweighs 100 Reddit comments. But when signals align across domains (clinical pain + regulatory clarity + founder activity), confidence is high.</li>
+          <li><strong>Founder behavior is the most reliable signal.</strong> Venture money can be wrong. Regulatory guidance can be ambiguous. But when experienced founders start building in a space, they know something. Tracking founder moves is more predictive than sentiment.</li>
+          <li><strong>The best opportunities are often asymmetric.</strong> High pain and low founder activity, or weak incumbents and strong regulatory clarity, or emerging regulation and technical readiness. The ones where multiple dimensions align are rarer and worth the focus.</li>
+          <li><strong>Continuous iteration beats one-time analysis.</strong> Healthcare AI moves fast. What was overhyped 6 months ago (generalist LLMs in medicine) is cooling. What seemed niche (FDA compliance tooling) is heating up. A static report would be outdated in weeks.</li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

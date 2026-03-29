@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laith Al-Jaouni | Biomedical Engineer & Software Developer</title>
-  <meta name="description" content="Biomedical engineer turned software developer. Building AI platforms, scientific software, and clinical ML systems.">
+  <title>Laith Al-Jaouni | Healthcare AI Engineer</title>
+  <meta name="description" content="Healthcare AI engineer. I build AI systems for healthcare that regulators trust and clinicians use. DARPA triage challenge, FDA regulatory awareness, biosignal processing.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="projects/index.html">Projects</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <button class="nav__toggle" aria-label="Toggle navigation">
@@ -32,12 +33,12 @@
   <section class="hero">
     <div class="container">
       <div class="hero__content">
-        <span class="hero__label">Biomedical Engineer & Software Developer</span>
-        <h1 class="hero__title">I build software where science meets engineering.</h1>
+        <span class="hero__label">Healthcare AI Engineer</span>
+        <h1 class="hero__title">I build AI systems for healthcare that regulators trust and clinicians use.</h1>
         <p class="hero__subtitle">
-          From bench work in tissue engineering to building AI platforms and clinical ML systems.
-          M.S. Biomedical Engineering, 166K+ lines of production code, and a knack for
-          making complex scientific workflows actually work.
+          Physiological signal processing (ECG, EEG, PPG) meets FDA regulatory awareness. DARPA triage challenge veteran.
+          I've built production ML systems for clinical data and founded a market intelligence pipeline to identify high-impact healthcare AI opportunities.
+          M.S. Biomedical Engineering, 166K+ lines of production code.
         </p>
         <div class="hero__cta">
           <a href="projects/index.html" class="btn btn--primary">View Projects</a>
@@ -59,6 +60,23 @@
 
       <div class="projects-grid">
 
+        <a href="projects/market-intel.html" class="project-card" style="text-decoration:none;color:inherit">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Dashboard visualization</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag">Business Intelligence</span>
+              <span class="tag tag--navy">Full-Stack</span>
+            </div>
+            <h3 class="project-card__title">Market Intelligence Pipeline</h3>
+            <p class="project-card__desc">
+              Full-stack system for systematically identifying and scoring healthcare AI opportunities using 21+ signal collectors and a 9-dimension scoring model.
+            </p>
+            <p class="project-card__metric">25+ opportunities evaluated &middot; 6,700+ signals &middot; Thesis-driven</p>
+          </div>
+        </a>
+
         <a href="projects/grad-research.html" class="project-card" style="text-decoration:none;color:inherit">
           <img src="assets/images/grad-research/01_hero_reactive_astrocyte.jpeg" alt="Fluorescence microscopy of a reactive astrocyte" class="project-card__img">
           <div class="project-card__body">
@@ -74,7 +92,7 @@
           </div>
         </a>
 
-        <div class="project-card">
+        <a href="projects/hypersight.html" class="project-card" style="text-decoration:none;color:inherit">
           <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
             <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
           </div>
@@ -89,9 +107,9 @@
             </p>
             <p class="project-card__metric">64,300+ LOC &middot; 100+ REST endpoints</p>
           </div>
-        </div>
+        </a>
 
-        <div class="project-card">
+        <a href="projects/darpa-triage.html" class="project-card" style="text-decoration:none;color:inherit">
           <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
             <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
           </div>
@@ -106,7 +124,7 @@
             </p>
             <p class="project-card__metric">0.938 AUROC &middot; 25 prediction targets</p>
           </div>
-        </div>
+        </a>
 
       </div>
 
@@ -122,17 +140,16 @@
       <div class="about-preview">
         <div class="about-preview__text">
           <p class="section__label">About</p>
-          <h2 class="section__title">Scientist turned engineer.</h2>
+          <h2 class="section__title">Scientist turned engineer, focused on healthcare AI.</h2>
           <p>
             I started in a tissue engineering lab at Virginia Tech, studying how brain cells respond to
-            traumatic injury. That work gave me a deep appreciation for complex systems and rigorous
-            experimental design. Now I apply that same mindset to software — building tools that handle
-            real scientific and clinical data, not toy problems.
+            traumatic injury. That research on complex biological systems led me into healthcare AI, where I now build
+            production ML systems that handle real clinical data, FDA regulations, and the specifics of physiological signals.
           </p>
           <p>
-            Currently at Meso Scale Diagnostics, where I build everything from laboratory information
-            management systems to embedded motion controllers to AI platforms. I like problems where
-            domain knowledge actually matters.
+            My focus: building AI systems for healthcare that regulators trust and clinicians actually use. I've competed in the DARPA triage challenge (0.938 AUROC),
+            worked on biosignal processing (ECG, EEG, PPG), and created a market intelligence pipeline to evaluate healthcare AI opportunities at scale.
+            Currently exploring consulting and potential cofounder roles in healthcare AI, while building tools to systematically identify high-impact problems.
           </p>
           <a href="about.html" class="btn btn--outline" style="margin-top:var(--space-md)">Read More</a>
         </div>
@@ -156,7 +173,7 @@
       <div class="footer__links">
         <a href="mailto:laith.aljaouni@gmail.com">Email</a>
         <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
       </div>
       <p>Laith Al-Jaouni &middot; McLean, VA</p>
     </div>
