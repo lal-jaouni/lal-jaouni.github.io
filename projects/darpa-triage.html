@@ -35,8 +35,9 @@
       <h1 class="project-hero__title">DARPA Triage Challenge</h1>
       <p class="project-hero__subtitle">
         An end-to-end machine learning system that predicts life-saving clinical interventions
-        from multi-modal trauma data. Built for the DARPA Triage Challenge through MSAI Labs,
-        processing 327 GB of data across 7,287 patients from two Level-1 trauma centers.
+        from multi-modal trauma data. Built as a consultant through MSAI Labs,
+        processing 327 GB of raw clinical data across 7,287 patients from two Level-1 trauma centers,
+        achieving 0.938 AUROC across 25 intervention targets.
       </p>
       <div class="project-hero__meta">
         <div class="project-meta__item">
@@ -167,11 +168,18 @@
           </div>
         </div>
 
-        <h2>What This Taught Me</h2>
+        <h2>Why This Matters</h2>
+        <p>
+          The DARPA triage challenge represents real clinical impact: faster, more accurate decisions in the first hours
+          after trauma can mean the difference between recovery and permanent disability. But more importantly, it demonstrates
+          what production healthcare AI requires: dealing with messy, multi-modal data from multiple sites; building quality assurance
+          for clinical signals; navigating FDA-relevant considerations around validation and reproducibility; and shipping code that
+          clinicians actually trust enough to use in high-stakes settings.
+        </p>
         <p>
           Working with real clinical data is fundamentally different from clean ML benchmarks.
-          More than half my time went into understanding the data &mdash; discovering that most
-          ABP waveforms were unusable, building quality metrics that could quantify "trustworthy"
+          More than half my time went into understanding the data &mdash; discovering that 56% of ABP
+          waveforms were physiologically implausible, building quality metrics that could quantify "trustworthy"
           signals, and engineering features that capture clinical meaning rather than just
           statistical patterns. The project reinforced that in healthcare ML, the data pipeline
           is the model.
