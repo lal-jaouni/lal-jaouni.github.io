@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | Laith Al-Jaouni</title>
-  <meta name="description" content="Selected projects: AI platforms, clinical ML, scientific software, tissue engineering research, and embedded systems.">
+  <meta name="description" content="Selected projects: clinical ML, lab automation, data engineering, tissue engineering research, embedded systems, and AI platforms.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,28 +34,50 @@
         <p class="section__label">Projects</p>
         <h1 class="section__title">Things I've Built</h1>
         <p class="section__desc">
-          A curated selection from 12+ major projects spanning AI/ML, scientific software,
-          clinical data, and embedded systems.
+          From clinical ML to embedded firmware -- a curated selection spanning healthcare AI,
+          lab automation, data engineering, and scientific research.
         </p>
       </div>
 
       <div class="projects-grid">
 
-        <!-- Market Intelligence -->
-        <a href="market-intel.html" class="project-card" style="text-decoration:none;color:inherit">
+        <!-- DARPA Triage Challenge -->
+        <a href="darpa-triage.html" class="project-card" style="text-decoration:none;color:inherit">
           <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
-            <span style="color:var(--gray-400);font-size:0.9rem">Dashboard visualization</span>
+            <span style="color:var(--gray-400);font-size:0.9rem">Signal processing pipeline</span>
           </div>
           <div class="project-card__body">
             <div class="project-card__tags">
-              <span class="tag">Business Intelligence</span>
-              <span class="tag tag--navy">Full-Stack</span>
+              <span class="tag">Clinical ML</span>
+              <span class="tag tag--green">Healthcare AI</span>
+              <span class="tag tag--navy">DARPA</span>
             </div>
-            <h3 class="project-card__title">Market Intelligence Pipeline</h3>
+            <h3 class="project-card__title">DARPA Triage Challenge</h3>
             <p class="project-card__desc">
-              Full-stack system for systematically identifying and scoring healthcare AI opportunities using 21+ signal collectors and a 9-dimension scoring model.
+              End-to-end ML pipeline predicting life-saving interventions
+              from streaming multi-modal physiological data across multiple trauma centers.
             </p>
-            <p class="project-card__metric">25+ opportunities evaluated &middot; 6,700+ signals &middot; Thesis-driven</p>
+            <p class="project-card__metric">AUROC 0.71&ndash;0.89 &middot; 2,200+ features &middot; 56 experiments &middot; 7,000+ patients</p>
+          </div>
+        </a>
+
+        <!-- MesoFlow LIMS -->
+        <a href="mesoflow.html" class="project-card" style="text-decoration:none;color:inherit">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Data pipeline architecture</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag tag--green">Life Sciences</span>
+              <span class="tag tag--navy">Full-Stack</span>
+              <span class="tag">Data Engineering</span>
+            </div>
+            <h3 class="project-card__title">MesoFlow LIMS</h3>
+            <p class="project-card__desc">
+              Laboratory information management system with computational image processing
+              pipeline for bioassay experiments. Protocol to result, tracked end-to-end.
+            </p>
+            <p class="project-card__metric">~55,000 LOC &middot; 20-100x speedup via Numba JIT</p>
           </div>
         </a>
 
@@ -77,10 +99,30 @@
           </div>
         </a>
 
+        <!-- PlateHandler -->
+        <a href="platehandler.html" class="project-card" style="text-decoration:none;color:inherit">
+          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
+            <span style="color:var(--gray-400);font-size:0.9rem">Motion control system</span>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__tags">
+              <span class="tag tag--navy">Embedded</span>
+              <span class="tag">C++</span>
+              <span class="tag tag--green">Lab Automation</span>
+            </div>
+            <h3 class="project-card__title">PlateHandler Motion Control</h3>
+            <p class="project-card__desc">
+              5-axis embedded motion control system for automated laboratory plate handling
+              with H-Bot kinematics and collision detection.
+            </p>
+            <p class="project-card__metric">ESP32 &middot; C++ firmware &middot; PyQt5 GUI &middot; Serial protocols</p>
+          </div>
+        </a>
+
         <!-- HyperSight -->
         <a href="hypersight.html" class="project-card" style="text-decoration:none;color:inherit">
           <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
-            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+            <span style="color:var(--gray-400);font-size:0.9rem">Analytics platform</span>
           </div>
           <div class="project-card__body">
             <div class="project-card__tags">
@@ -97,48 +139,28 @@
           </div>
         </a>
 
-        <!-- DARPA -->
-        <a href="darpa-triage.html" class="project-card" style="text-decoration:none;color:inherit">
+        <!-- Market Intelligence -->
+        <a href="market-intel.html" class="project-card" style="text-decoration:none;color:inherit">
           <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
-            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+            <span style="color:var(--gray-400);font-size:0.9rem">Dashboard visualization</span>
           </div>
           <div class="project-card__body">
             <div class="project-card__tags">
-              <span class="tag">Clinical ML</span>
-              <span class="tag tag--green">Healthcare AI</span>
-            </div>
-            <h3 class="project-card__title">DARPA Triage Challenge</h3>
-            <p class="project-card__desc">
-              End-to-end ML system predicting life-saving interventions from multi-modal
-              clinical data across two Level-1 trauma centers.
-            </p>
-            <p class="project-card__metric">0.938 AUROC &middot; 327 GB data &middot; 7,287 patients</p>
-          </div>
-        </a>
-
-        <!-- MesoFlow -->
-        <a href="mesoflow.html" class="project-card" style="text-decoration:none;color:inherit">
-          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
-            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
-          </div>
-          <div class="project-card__body">
-            <div class="project-card__tags">
-              <span class="tag tag--green">Life Sciences</span>
+              <span class="tag">Business Intelligence</span>
               <span class="tag tag--navy">Full-Stack</span>
             </div>
-            <h3 class="project-card__title">MesoFlow LIMS</h3>
+            <h3 class="project-card__title">Market Intelligence Pipeline</h3>
             <p class="project-card__desc">
-              Laboratory information management system for ECL bioassay experiments
-              with computational image processing pipeline.
+              Full-stack system for systematically identifying and scoring healthcare AI opportunities using 21+ signal collectors and a 9-dimension scoring model.
             </p>
-            <p class="project-card__metric">~55,000 LOC &middot; 20-100x speedup via Numba JIT</p>
+            <p class="project-card__metric">25+ opportunities evaluated &middot; 6,700+ signals &middot; Thesis-driven</p>
           </div>
         </a>
 
         <!-- Jira AI PM -->
         <a href="jira-ai-pm.html" class="project-card" style="text-decoration:none;color:inherit">
           <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
-            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
+            <span style="color:var(--gray-400);font-size:0.9rem">AI automation</span>
           </div>
           <div class="project-card__body">
             <div class="project-card__tags">
@@ -151,25 +173,6 @@
               with intelligent duplicate detection.
             </p>
             <p class="project-card__metric">70-80% reduction in manual task creation</p>
-          </div>
-        </a>
-
-        <!-- PlateHandler -->
-        <a href="platehandler.html" class="project-card" style="text-decoration:none;color:inherit">
-          <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy)">
-            <span style="color:var(--gray-400);font-size:0.9rem">Screenshot coming soon</span>
-          </div>
-          <div class="project-card__body">
-            <div class="project-card__tags">
-              <span class="tag tag--navy">Embedded</span>
-              <span class="tag">C++</span>
-            </div>
-            <h3 class="project-card__title">PlateHandler Motion Control</h3>
-            <p class="project-card__desc">
-              5-axis embedded motion control system for laboratory plate handling
-              with H-Bot kinematics and collision detection.
-            </p>
-            <p class="project-card__metric">~4,500 LOC &middot; ESP32 &middot; PyQt5 GUI</p>
           </div>
         </a>
 

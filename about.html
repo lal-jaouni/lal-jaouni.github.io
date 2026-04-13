@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About | Laith Al-Jaouni</title>
-  <meta name="description" content="Healthcare AI engineer. DARPA triage challenge, physiological signal processing, FDA regulatory awareness, market intelligence.">
+  <meta name="description" content="Biomedical engineer and ML researcher. From tissue engineering and lab automation to clinical AI and physiological signal processing. DARPA triage challenge, FDA regulatory awareness.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,18 +34,9 @@
       <div class="about-preview">
         <div class="about-preview__text">
           <p class="section__label">About Me</p>
-          <h1 class="section__title">Healthcare AI engineer, building systems clinicians trust.</h1>
+          <h1 class="section__title">From the bench to the algorithm &mdash; every layer of the stack.</h1>
           <p>
-            I started in a tissue engineering lab at Virginia Tech, studying how astrocytes remodel brain tissue after traumatic injury. That work taught me to respect complexity, design rigorous experiments, and think across disciplines.
-          </p>
-          <p>
-            After my M.S. (Summa Cum Laude), I joined a diagnostics R&D company where I saw firsthand how much time gets wasted when data is stored poorly. Experiments get lost, forgotten, and misinterpreted. I realized I could make a bigger impact by building the systems that fix those problems than by running the experiments myself. Over three years, I built production data pipelines, ML models, and automation platforms that improved workflow speed, reliability, and project success across the organization.
-          </p>
-          <p>
-            That led me to healthcare AI. In January 2026, I joined a team working on the DARPA Triage Challenge, where I lead the ML development. One of the things I'm most proud of is predicting arterial blood pressure waveforms from ECG and PPG signals calibrated with non-invasive readings, which helps determine when a trauma patient needs a life-saving intervention. The work involves processing real clinical data from thousands of patients across two Level-1 trauma centers, and building validation frameworks that clinicians and regulators can trust.
-          </p>
-          <p>
-            Where I want to go: I want to help transform healthcare into an industry with complete data fluency, where treatment is optimized at the level of each individual patient. AI is an extremely powerful tool that will transform healthcare if used properly. It's not a catch-all, but it can inform and improve patient care in one of the greatest leaps in history. I built a market intelligence pipeline to systematically understand which healthcare AI problems matter most, and I'm looking for the right conversations to figure out where I can make the biggest impact.
+            Most people specialize in one layer. I've worked across all of them: generating data at the bench, automating the instruments that collect it, engineering the pipelines that organize it, and building the models that learn from it. Each phase built on the last, and the combination is what makes my work different.
           </p>
         </div>
         <div>
@@ -55,8 +46,62 @@
     </div>
   </section>
 
-  <!-- What I Can Help With -->
+  <!-- Progression Story -->
   <section class="section section--alt">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__label">The Progression</p>
+        <h2 class="section__title">Four phases, each building on the last</h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:var(--space-xl)">
+
+        <div style="padding:var(--space-xl);background:white;border-radius:var(--border-radius);border-left:4px solid var(--accent)">
+          <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-400);margin-bottom:var(--space-xs)">Phase 1</p>
+          <h3 style="margin-top:0">Bench Science</h3>
+          <p style="font-size:0.85rem;color:var(--gray-400);margin-bottom:var(--space-sm)">Virginia Tech &middot; 2022&ndash;2023</p>
+          <p>
+            I started generating data. My M.S. thesis investigated how astrocytes remodel brain tissue after traumatic injury. I designed experiments, operated atomic force microscopes and rheometers, and analyzed fluorescence images. Working with complex biological data taught me that measurement quality determines everything downstream.
+          </p>
+          <p style="font-size:0.85rem;color:var(--gray-500)"><strong>Skills:</strong> tissue engineering, AFM, rheology, immunofluorescence, experiment design, scientific writing</p>
+        </div>
+
+        <div style="padding:var(--space-xl);background:white;border-radius:var(--border-radius);border-left:4px solid var(--accent)">
+          <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-400);margin-bottom:var(--space-xs)">Phase 2</p>
+          <h3 style="margin-top:0">Instrument Automation</h3>
+          <p style="font-size:0.85rem;color:var(--gray-400);margin-bottom:var(--space-sm)">Diagnostics R&D &middot; 2023&ndash;2024</p>
+          <p>
+            I started building the tools that generate data. I designed a 5-axis embedded motion control system with H-Bot kinematics and collision detection, programmed firmware for stepper motor controllers, performed IQ/OQ/PQ validation for fully automated assay instrumentation, and built calibration workflows. This was where I learned to bridge hardware and software.
+          </p>
+          <p style="font-size:0.85rem;color:var(--gray-500)"><strong>Skills:</strong> ESP32/C++ firmware, motion control, serial protocols, IQ/OQ/PQ validation, calibration, PyQt5</p>
+        </div>
+
+        <div style="padding:var(--space-xl);background:white;border-radius:var(--border-radius);border-left:4px solid var(--accent)">
+          <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-400);margin-bottom:var(--space-xs)">Phase 3</p>
+          <h3 style="margin-top:0">Data Engineering</h3>
+          <p style="font-size:0.85rem;color:var(--gray-400);margin-bottom:var(--space-sm)">Diagnostics R&D &middot; 2024&ndash;2025</p>
+          <p>
+            I started organizing data at scale. I built a laboratory information management system (~55K LOC) with computational image processing, designed data pipelines that tracked experiments from protocol to result, performed finite element analysis (fluid dynamics, transport of diluted species), and built camera and sensor modeling tools. I learned that most organizations lose more value to poor data management than to poor analysis.
+          </p>
+          <p style="font-size:0.85rem;color:var(--gray-500)"><strong>Skills:</strong> Python, React, PostgreSQL, LIMS design, FEA/COMSOL, image processing, Numba JIT, Docker</p>
+        </div>
+
+        <div style="padding:var(--space-xl);background:white;border-radius:var(--border-radius);border-left:4px solid var(--accent)">
+          <p style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-400);margin-bottom:var(--space-xs)">Phase 4</p>
+          <h3 style="margin-top:0">ML / AI</h3>
+          <p style="font-size:0.85rem;color:var(--gray-400);margin-bottom:var(--space-sm)">MSAI Labs (DARPA-funded) &middot; 2026&ndash;Present</p>
+          <p>
+            Now I build the models that learn from data. On a DARPA-funded team, I process 327 GB of multi-modal clinical data from thousands of trauma patients, engineer 2,200+ features from physiological waveforms, and train models that predict life-saving interventions with &lt;2ms latency. The signal processing, data engineering, and domain knowledge from every previous phase shows up in this work daily.
+          </p>
+          <p style="font-size:0.85rem;color:var(--gray-500)"><strong>Skills:</strong> PyTorch, LightGBM, Optuna, SHAP, wavelet analysis, transfer learning, AWS SageMaker</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- What I Can Help With -->
+  <section class="section">
     <div class="container">
       <div class="section__header">
         <p class="section__label">Expertise</p>
@@ -64,75 +109,47 @@
       </div>
       <div class="skills-grid">
         <div class="skill-category">
-          <h3 class="skill-category__title">Making Clinical ML Work in Regulated Environments</h3>
+          <h3 class="skill-category__title">Clinical ML in Regulated Environments</h3>
           <p class="skill-category__items">
-            FDA classification and regulatory pathways (predicate devices, 510(k), De Novo), algorithm transparency for regulators, post-market surveillance, clinical validation protocols, HIPAA considerations
+            FDA classification and regulatory pathways (510(k), De Novo), algorithm transparency, clinical validation protocols, prevalence-normalized evaluation metrics, ICD-compliant scoring
           </p>
         </div>
         <div class="skill-category">
-          <h3 class="skill-category__title">Processing Physiological Signals at Scale</h3>
+          <h3 class="skill-category__title">Physiological Signal Processing</h3>
           <p class="skill-category__items">
-            ECG, PPG, arterial blood pressure, capnography. Signal quality assessment, waveform feature extraction, real-time processing, handling multi-site data variations, signal preprocessing pipelines
+            Waveform quality assessment, wavelet decomposition, sample entropy, temporal feature engineering, real-time processing, multi-site data harmonization
           </p>
         </div>
         <div class="skill-category">
-          <h3 class="skill-category__title">Building Data Pipelines for Messy Healthcare Data</h3>
+          <h3 class="skill-category__title">Healthcare Data Engineering</h3>
           <p class="skill-category__items">
-            EHR integration, handling missing/incomplete data, multi-source data harmonization, clinical data validation, time-series alignment, feature engineering for clinical context
+            EHR integration, multi-source harmonization, time-series alignment, feature engineering from clinical context, ETL pipelines at scale (327 GB+)
           </p>
         </div>
         <div class="skill-category">
-          <h3 class="skill-category__title">Evaluating Healthcare AI Market Opportunities</h3>
+          <h3 class="skill-category__title">Lab Automation &amp; Instrumentation</h3>
           <p class="skill-category__items">
-            Market signal collection and analysis, clinical pain assessment, competitive landscape evaluation, founder behavior tracking, regulatory feasibility analysis, ROI modeling
+            Embedded firmware (C++/ESP32), motion control systems, IQ/OQ/PQ validation, calibration workflows, instrument integration, serial communication protocols
           </p>
         </div>
         <div class="skill-category">
-          <h3 class="skill-category__title">Production ML Architecture</h3>
+          <h3 class="skill-category__title">Production ML Systems</h3>
           <p class="skill-category__items">
-            PyTorch, XGBoost, scikit-learn, transformers (PatchTST), model validation and testing, MLflow tracking, SHAP interpretability, feature engineering, FastAPI/Python backend
+            PyTorch, LightGBM/XGBoost/CatBoost, Bayesian HPO (Optuna), SHAP explainability, transfer learning, config-driven experiment frameworks, reproducible research
           </p>
         </div>
         <div class="skill-category">
-          <h3 class="skill-category__title">Full-Stack Development</h3>
+          <h3 class="skill-category__title">Experiment Design &amp; Scientific Method</h3>
           <p class="skill-category__items">
-            Python, TypeScript, React 18, PostgreSQL, FastAPI, Docker containerization, cloud deployment (AWS), end-to-end system design
+            From bench protocols to ML ablation studies. Rigorous experimental design, statistical validation, publication-quality analysis, scientific documentation (Quarto/LaTeX)
           </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- What I'm Exploring -->
-  <section class="section section--alt">
-    <div class="container">
-      <div class="about-preview">
-        <div class="about-preview__text">
-          <p>
-            I'm at a point where I want to have more conversations with people working on hard healthcare problems. Since January 2026, I've been leading ML development on a DARPA-funded triage challenge, building a system that predicts life-saving interventions from physiological waveforms (ECG, PPG, arterial blood pressure), clinical records, and lab results from thousands of patients across two Level-1 trauma centers. The hardest part isn't the modeling. It's making it work with data that's noisy, incomplete, and collected differently at every site.
-          </p>
-          <p>
-            If you're a founder building in healthcare AI, a hospital exploring ML/data initiatives, or someone thinking about how to navigate FDA requirements for AI software, I'd enjoy talking. No pitch, just genuine interest in the problem space.
-          </p>
-        </div>
-        <div>
-          <ul class="about-preview__highlights">
-            <li><strong>Current work:</strong> DARPA triage challenge (January 2026 onwards)</li>
-            <li><strong>What I can help with:</strong></li>
-            <li>Making clinical ML systems work in regulated environments</li>
-            <li>Processing physiological signals at scale (ECG, PPG, arterial BP)</li>
-            <li>Navigating FDA considerations for AI/ML software</li>
-            <li>Building data pipelines for messy, multi-source healthcare data</li>
-            <li>Evaluating healthcare AI market opportunities systematically</li>
-            <li><strong>Timeline:</strong> Available for advisory and consulting work</li>
-          </ul>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Experience Timeline -->
-  <section class="section">
+  <section class="section section--alt">
     <div class="container">
       <div class="section__header">
         <p class="section__label">Experience</p>
@@ -140,13 +157,25 @@
       </div>
       <ul class="timeline">
         <li class="timeline__item">
+          <p class="timeline__role">ML Research Engineer</p>
+          <p class="timeline__company">MSAI Labs (DARPA-funded)</p>
+          <p class="timeline__dates">January 2026 &ndash; Present</p>
+          <p class="timeline__desc">
+            ML development for the DARPA Triage Challenge. Built end-to-end pipelines for
+            physiological signal processing, feature engineering (2,200+ features), and
+            intervention prediction from streaming clinical data. 56 experiments across 8
+            research objectives. Transfer learning, Bayesian HPO, explainable AI.
+          </p>
+        </li>
+        <li class="timeline__item">
           <p class="timeline__role">Engineer, Research Scientist</p>
           <p class="timeline__company">Meso Scale Diagnostics</p>
           <p class="timeline__dates">July 2024 &ndash; Present</p>
           <p class="timeline__desc">
-            Full-stack software, AI platforms, embedded systems, and computational image processing
-            for diagnostics R&D. Built MesoFlow LIMS (~55K LOC), HyperSight SaaS platform (64K+ LOC),
-            and multiple lab automation tools.
+            Full-stack software, data engineering, and computational modeling
+            for diagnostics R&D. Built a laboratory information management system (~55K LOC)
+            with computational image processing pipeline. FEA simulation (fluid dynamics,
+            transport of diluted species), camera and sensor modeling.
           </p>
         </li>
         <li class="timeline__item">
@@ -154,8 +183,9 @@
           <p class="timeline__company">Meso Scale Diagnostics</p>
           <p class="timeline__dates">June 2023 &ndash; June 2024</p>
           <p class="timeline__desc">
-            Parsec R5000 system check development, lab automation tooling, microfluidic systems design,
-            and instrument validation. Reduced FSE training time by 50-100%.
+            Embedded firmware development, 5-axis motion control systems (C++/ESP32),
+            IQ/OQ/PQ validation for automated assay instrumentation, calibration workflows,
+            and lab automation tooling. Reduced field service training time by 50-100%.
           </p>
         </li>
         <li class="timeline__item">
@@ -163,8 +193,9 @@
           <p class="timeline__company">Virginia Tech</p>
           <p class="timeline__dates">Aug 2022 &ndash; May 2023</p>
           <p class="timeline__desc">
-            NSF-funded thesis on astrocyte-ECM interactions following TBI. Tissue engineering,
-            atomic force microscopy, rheology, and immunofluorescence imaging.
+            NSF-funded thesis on astrocyte-ECM interactions following traumatic brain injury.
+            Tissue engineering, atomic force microscopy, rheology, immunofluorescence imaging,
+            and hydrogel biomaterial characterization.
           </p>
         </li>
         <li class="timeline__item">
@@ -172,7 +203,8 @@
           <p class="timeline__company">QuidelOrtho</p>
           <p class="timeline__dates">May 2022 &ndash; Aug 2022</p>
           <p class="timeline__desc">
-            R&D engineering internship in in vitro diagnostics (IVD).
+            R&D engineering internship in in vitro diagnostics (IVD). Assay development
+            and validation support.
           </p>
         </li>
       </ul>
@@ -180,7 +212,7 @@
   </section>
 
   <!-- Education -->
-  <section class="section section--alt">
+  <section class="section">
     <div class="container">
       <div class="section__header">
         <p class="section__label">Education</p>
@@ -203,6 +235,20 @@
             <strong>GPA: 3.87 &middot; Summa Cum Laude</strong>
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--alt">
+    <div class="container" style="text-align:center;max-width:640px">
+      <h2 class="section__title">If you need someone who understands both the biology and the engineering, I'd like to talk.</h2>
+      <p style="margin-bottom:var(--space-xl)">
+        Whether it's a full-time role, a consulting engagement, or a research collaboration -- I'm interested in hard problems where clinical domain knowledge meets production engineering.
+      </p>
+      <div>
+        <a href="mailto:laith.aljaouni@gmail.com" class="btn btn--primary">Get in Touch</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" class="btn btn--outline" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </section>

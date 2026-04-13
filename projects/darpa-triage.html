@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DARPA Triage Challenge | Laith Al-Jaouni</title>
-  <meta name="description" content="End-to-end ML system predicting life-saving clinical interventions from 327 GB of multi-modal data across 7,287 trauma patients.">
+  <meta name="description" content="ML pipeline predicting life-saving interventions from streaming physiological waveforms across 7,000+ trauma patients for the DARPA Triage Challenge.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,16 +34,17 @@
       <a href="index.html" class="project-hero__back">&larr; All Projects</a>
       <h1 class="project-hero__title">DARPA Triage Challenge</h1>
       <p class="project-hero__subtitle">
-        Can machine learning predict which life-saving interventions a trauma patient will need, using only data available to first responders? That's the question behind the DARPA Triage Challenge.
+        Predicting which life-saving interventions a trauma patient will need from streaming
+        multi-modal physiological data and clinical records, before the interventions become emergencies.
       </p>
       <div class="project-hero__meta">
         <div class="project-meta__item">
           <strong>Role</strong>
-          ML Lead
+          ML Research Engineer
         </div>
         <div class="project-meta__item">
-          <strong>Affiliation</strong>
-          MSAI Labs (startup)
+          <strong>Team</strong>
+          MSAI Labs (DARPA-funded)
         </div>
         <div class="project-meta__item">
           <strong>Duration</strong>
@@ -51,11 +52,11 @@
         </div>
         <div class="project-meta__item">
           <strong>Data Scale</strong>
-          7,287 patients from 2 Level-1 trauma centers
+          327 GB &middot; 7,000+ patients &middot; multiple trauma centers
         </div>
         <div class="project-meta__item">
-          <strong>Predictions</strong>
-          Predicts 25 clinical interventions (intubation, transfusion, surgery, etc.) with high accuracy
+          <strong>Scope</strong>
+          56 experiments across 8 research objectives
         </div>
       </div>
     </div>
@@ -66,71 +67,179 @@
     <div class="container">
       <div class="project-content">
 
-        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
-          <span style="color:var(--gray-400);font-size:0.9rem">Screenshots coming soon</span>
-        </div>
-
         <h2>The Problem</h2>
         <p>
-          In trauma care, the first minutes matter most. Paramedics and first responders have to
-          make rapid decisions about which interventions a patient needs &mdash; intubation, blood
-          transfusion, chest tube, surgery &mdash; often with incomplete information. The DARPA
-          Triage Challenge asks: can machine learning predict which interventions a patient will
-          need, using data available in the field?
+          In trauma care, the first hours determine survival. Clinicians must rapidly decide which
+          life-saving interventions a patient needs -- from airway management and damage control
+          procedures to medications and vascular access. The
+          <a href="https://triagechallenge.darpa.mil/" target="_blank" rel="noopener">DARPA Triage Challenge</a>
+          asks whether machine learning can predict these interventions from streaming multi-modal
+          physiological data before they become emergencies.
         </p>
         <p>
-          The data is messy, multi-modal, and massive. Electronic health records, physiological
-          waveforms (ECG, PPG, arterial blood pressure, capnography), lab results, vitals, and
-          clinical notes &mdash; all collected across two Level-1 trauma centers with different
-          recording systems and conventions.
+          The data is messy, multi-modal, and massive. Electronic health records from dozens of
+          clinical tables, continuous physiological waveforms and vital signs, and lab results,
+          all collected across multiple trauma centers with different
+          recording conventions and schemas.
         </p>
+
+        <h2>Key Results</h2>
+        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0">
+          <tr style="border-bottom:2px solid var(--gray-200)">
+            <th style="text-align:left;padding:0.75rem 1rem">Metric</th>
+            <th style="text-align:left;padding:0.75rem 1rem">Result</th>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Prediction Discrimination</strong></td>
+            <td style="padding:0.75rem 1rem">AUROC 0.71&ndash;0.89 across 5 LSI categories</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Waveform Prediction</strong></td>
+            <td style="padding:0.75rem 1rem">0.76 correlation via transfer learning (5M+ external segments)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Blood Pressure Accuracy</strong></td>
+            <td style="padding:0.75rem 1rem">Meets AAMI clinical standards (SBP and DBP)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Features Engineered</strong></td>
+            <td style="padding:0.75rem 1rem">2,200+ from waveforms + EHR</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Patient Coverage</strong></td>
+            <td style="padding:0.75rem 1rem">94% (vs 60% with traditional quality gating)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Streaming Latency</strong></td>
+            <td style="padding:0.75rem 1rem">&lt;2ms per prediction (300x under budget)</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1rem"><strong>Per-Category Optimization</strong></td>
+            <td style="padding:0.75rem 1rem">+23% composite score over global model</td>
+          </tr>
+        </table>
 
         <h2>What I Built</h2>
 
-        <h3>Data Pipeline &amp; Feature Engineering</h3>
+        <h3>Signal Processing Pipeline</h3>
         <p>
-          Processed 327 GB of raw clinical data into a structured ML-ready format. This involved
-          parsing 179,415 time segments across 7,287 patients, building a signal quality assessment
-          framework (7 metrics per signal type, 353,192 quality records), and engineering 433+
-          features across three tiers: minimal (30), basic (110), and full (433).
+          Built an end-to-end pipeline processing multiple physiological signal types
+          at up to 240 Hz. Each signal goes through calibration, temporal alignment,
+          quality assessment, and feature extraction.
         </p>
         <p>
-          A key early finding: 56% of arterial blood pressure data was physiologically implausible.
-          Discovering and handling that required building custom quality scoring for each signal type &mdash;
-          SNR, kurtosis, zero-crossing rate, template matching, spectral quality, and physiological
-          plausibility checks.
+          A critical early discovery: ICU sensors connect at different times, creating 22&ndash;276
+          seconds of temporal misalignment between signals in the same recording session. Fixing
+          this with chunk-by-chunk timestamp intersection was the single largest performance gain
+          of the project (+29%), larger than any architecture change.
         </p>
-
-        <h3>Tabular Classification</h3>
         <p>
-          The core prediction system uses per-target XGBoost models with Bayesian hyperparameter
-          optimization (Optuna, 50 trials per target). Across 25 ICD-compliant intervention targets,
-          the system achieves a mean AUROC of 0.938, with 22 of 25 targets above 0.90.
+          Rather than discarding noisy segments (which loses the sickest patients), I built a
+          7-metric continuous quality scoring system and fed quality scores as model inputs. This
+          recovered patient coverage from 60% to 94% while maintaining prediction accuracy.
         </p>
 
-        <h3>Waveform Deep Learning</h3>
+        <h3>Feature Engineering (2,200+ Features)</h3>
         <p>
-          For physiological waveform analysis, I built a PatchTST transformer (2.1M parameters)
-          and a U-Net baseline for arterial blood pressure prediction. The two-stage calibration
-          pipeline (frozen encoder + XGBoost head) achieves 0.952 waveform correlation with AAMI-compliant
-          blood pressure error (SBP 4.9 mmHg, DBP 2.7 mmHg). Pre-training on 5.09M PulseDB
-          segments with a U2-Net (44M parameters) established the foundation for transfer learning.
+          Designed 12 distinct feature families capturing different aspects of hemodynamic physiology:
+        </p>
+        <ul>
+          <li><strong>Clinical hemodynamics</strong> (54 features): SBP, DBP, MAP, pulse pressure,
+            shock index, heart rate variability, waveform morphology (dicrotic notch depth, systolic
+            upstroke time, diastolic decay)</li>
+          <li><strong>Wavelet decomposition</strong> (336 features): 5-level Daubechies DWT across
+            6 frequency bands, capturing respiratory modulation, pulse dynamics, and vascular tone</li>
+          <li><strong>Temporal trends</strong> (168+ features): Rolling 5-min and 15-min statistics
+            (delta, slope, mean, std, min, max) tracking hemodynamic trajectory</li>
+          <li><strong>Sample entropy</strong> (12 features): Complexity analysis of physiological
+            time series, validated for predicting hemodynamic instability</li>
+          <li><strong>Extended statistics</strong> (84+ features): Exponential moving averages,
+            acceleration, trend reliability, robust percentiles</li>
+          <li><strong>EHR features</strong> (600+ features): Extracted from 28 clinical tables
+            across 2 hospital sites with schema harmonization</li>
+        </ul>
+        <p>
+          A multi-phase feature selection pipeline (mutual information filtering, correlation
+          clustering, SHAP stability analysis, permutation importance validation) reduced 2,200
+          features to 22&ndash;40 validated clusters per prediction target.
         </p>
 
-        <h3>Signal Processing</h3>
+        <h3>Transfer Learning for Waveform Prediction</h3>
         <p>
-          Developed processing pipelines for four signal types: PPG, ECG, arterial blood pressure,
-          and capnography. Each pipeline handles ADC-to-physical unit calibration, peak detection,
-          beat segmentation, and feature extraction including 168 wavelet features via discrete
-          wavelet transform and 44 clinical features from waveform morphology.
+          Adapted a nested U-Net architecture (44M parameters) from image segmentation to 1D
+          physiological waveform prediction. Pre-trained on 5M+ external physiological segments
+          using a novel lag-invariant loss function that handles temporal misalignment between
+          clinical sensors.
         </p>
+        <p>
+          The loss combines four components: Fourier correlation (completely phase-invariant),
+          spectral magnitude matching, beat peak amplitude ranking (position-independent), and
+          lag-tolerant Pearson correlation. This enabled effective cross-domain transfer despite
+          uncorrectable hardware timing differences.
+        </p>
+
+        <h3>Per-Category Prediction Optimization</h3>
+        <p>
+          The five LSI categories have fundamentally different pathophysiology. Airway management
+          depends on respiratory features; blood product needs correlate with hemorrhage indicators;
+          vasopressor use tracks hemodynamic instability. A single global model compromises on all categories.
+        </p>
+        <p>
+          I trained independent gradient boosting models per category, each with its own feature
+          selection, hyperparameter optimization (50 Bayesian trials via Optuna), and evaluation.
+          This per-category approach improved composite performance by 23% over a global model.
+        </p>
+
+        <h3>Streaming Prediction System</h3>
+        <p>
+          Built a stateful streaming predictor that processes 30-second physiological segments in
+          real time, maintaining patient state across a rolling 30-minute window. Achieves &lt;2ms
+          prediction latency, 300x under the challenge's latency budget.
+        </p>
+
+        <h2>Technical Differentiators</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:var(--space-lg);margin:var(--space-lg) 0">
+          <div style="padding:var(--space-lg);background:var(--gray-50);border-radius:var(--border-radius)">
+            <h3 style="margin-top:0">Data Quality > Architecture</h3>
+            <p style="margin-bottom:0">
+              Temporal alignment fixes yielded +29% improvement, larger than any model architecture
+              change. In clinical ML, the data pipeline is the model.
+            </p>
+          </div>
+          <div style="padding:var(--space-lg);background:var(--gray-50);border-radius:var(--border-radius)">
+            <h3 style="margin-top:0">Quality as Features</h3>
+            <p style="margin-bottom:0">
+              Signal quality scores fed as continuous model inputs rather than binary discard gates.
+              94% patient coverage vs 60% with traditional gating.
+            </p>
+          </div>
+          <div style="padding:var(--space-lg);background:var(--gray-50);border-radius:var(--border-radius)">
+            <h3 style="margin-top:0">Domain-Aware Loss Design</h3>
+            <p style="margin-bottom:0">
+              Custom loss functions encoding clinical priorities: severity-weighted errors, phase-invariant
+              waveform comparison, and beat-level amplitude matching.
+            </p>
+          </div>
+          <div style="padding:var(--space-lg);background:var(--gray-50);border-radius:var(--border-radius)">
+            <h3 style="margin-top:0">Explainability-First Ranking</h3>
+            <p style="margin-bottom:0">
+              Feature importance validated through two independent methods (TreeSHAP stability +
+              held-out permutation importance), not just single-method rankings.
+            </p>
+          </div>
+        </div>
 
         <h2>Experiment Rigor</h2>
         <p>
-          Ran 16 formal experiments with ablation analysis and produced 13 executive reports.
-          Every modeling decision was tracked through MLflow, with SHAP-based interpretability
-          for clinical validation. The codebase includes 437+ test cases across 26 files (4,726
-          lines of test code) and 100+ pages of documentation.
+          Conducted 56 systematic experiments across 8 research objectives, each with formal
+          configuration, reproducible seeds, and tracked results. Built a config-driven experiment
+          framework (39 modules, 53 unit tests) enabling rapid hypothesis testing with YAML-based
+          schema validation.
+        </p>
+        <p>
+          Produced publication-quality scientific reports using Quarto with LaTeX typesetting,
+          multi-panel figures, and statistical validation. Every modeling decision was backed by
+          ablation analysis and SHAP-based clinical interpretability.
         </p>
 
         <h2>Tech Stack</h2>
@@ -138,42 +247,65 @@
           <div class="skill-category">
             <h3 class="skill-category__title">ML / Deep Learning</h3>
             <p class="skill-category__items">
-              PyTorch, XGBoost, scikit-learn, Optuna (Bayesian optimization),
-              MLflow, SHAP, PatchTST, U-Net, U2-Net
+              PyTorch, LightGBM, XGBoost, CatBoost, Optuna,
+              SHAP / TreeSHAP, U2-Net, PatchTST
             </p>
           </div>
           <div class="skill-category">
             <h3 class="skill-category__title">Signal Processing</h3>
             <p class="skill-category__items">
-              NeuroKit2, discrete wavelet transform, peak detection,
-              beat segmentation, quality scoring, spectral analysis
+              PyWavelets (DWT), NeuroKit2, sample entropy,
+              quality scoring (7 metrics), spectral analysis
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Feature Engineering</h3>
+            <p class="skill-category__items">
+              2,200+ features, 12 feature families, MI filtering,
+              correlation clustering, temporal trend analysis
             </p>
           </div>
           <div class="skill-category">
             <h3 class="skill-category__title">Data Engineering</h3>
             <p class="skill-category__items">
-              HDF5 (h5py), Parquet, Pandas, NumPy, 433+ engineered features,
-              multi-tier feature architecture
+              pandas, pyarrow (Parquet), h5py (HDF5), boto3,
+              S3, SQLite catalogs, multi-site harmonization
             </p>
           </div>
           <div class="skill-category">
             <h3 class="skill-category__title">Infrastructure</h3>
             <p class="skill-category__items">
-              AWS SageMaker, S3, Python 3.10, pytest, mypy, Ruff,
-              11,675 lines across 40 modules
+              AWS SageMaker, S3, Docker, Quarto,
+              pytest, ruff, 15,000+ LOC across 50+ modules
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Clinical Evaluation</h3>
+            <p class="skill-category__items">
+              AUPRC, AUROC, PNAP (prevalence-normalized),
+              ICD-compliant scoring, AAMI BP standards
             </p>
           </div>
         </div>
 
         <h2>Why This Matters</h2>
         <p>
-          This matters because triage decisions currently depend on a paramedic's experience and a few vital signs. If the model works, it could give first responders a second opinion backed by thousands of similar cases. This is especially critical in mass casualty events where experienced clinicians are spread thin.
+          Triage decisions currently depend on a clinician's experience and a handful of vital signs.
+          If these models work, they could give first responders and ICU teams an early warning system
+          backed by thousands of similar cases and continuous physiological monitoring. This is
+          especially critical in mass casualty events where experienced clinicians are spread thin.
         </p>
         <p>
-          More broadly, the DARPA triage challenge demonstrates what production healthcare AI requires: dealing with messy, multi-modal data from multiple sites; building quality assurance for clinical signals; navigating FDA-relevant considerations around validation and reproducibility; and shipping code that clinicians actually trust enough to use in high-stakes settings.
+          More broadly, this project demonstrates what production healthcare AI requires: handling
+          messy multi-site clinical data, building quality assurance for physiological signals,
+          designing evaluation metrics that account for rare clinical events, and producing
+          explainable predictions that clinicians can trust in high-stakes settings.
         </p>
         <p>
-          Working with real clinical data is fundamentally different from clean ML benchmarks. More than half my time went into understanding the data - discovering that 56% of ABP waveforms were physiologically implausible, building quality metrics that could quantify "trustworthy" signals, and engineering features that capture clinical meaning rather than just statistical patterns. The project reinforced that in healthcare ML, the data pipeline is the model.
+          The biggest lesson: in clinical ML, data engineering matters more than model architecture.
+          The single largest improvement came from fixing temporal alignment between sensors, not
+          from a fancier neural network. Understanding the data, its quirks, and its clinical
+          meaning is what separates useful healthcare AI from academic benchmarks.
         </p>
 
       </div>
