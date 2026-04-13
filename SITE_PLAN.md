@@ -103,7 +103,7 @@ Choose 4-6 from this list. Each gets its own /projects/{name} page:
 |---------|----------|------------|-------------|
 | HyperSight | AI/ML, Full-Stack, Consulting | 64,300+ LOC, 100+ LLM providers | Featured |
 | DARPA Triage Challenge | Clinical ML, Healthcare AI, Data Science | 0.938 AUROC, 327 GB data | Featured |
-| MesoFlow | Life Sciences, Scientific Software | 55K LOC, 20-100x speedup | Featured |
+| Bioassay LIMS | Life Sciences, Scientific Software | 55K LOC, 20-100x speedup | Featured |
 | Jira AI PM | AI/Automation, Productivity | Workflow automation | Standard |
 | PlateHandler / Embedded | Automation, IoT, Robotics | ESP32, motion control | Standard |
 | Grad Research (Astrocyte TBI) | Life Sciences, Clinical, Research | Tissue engineering, immunofluorescence | Shorter |
@@ -120,7 +120,7 @@ Choose 4-6 from this list. Each gets its own /projects/{name} page:
   - Headline, one-liner, problem/approach/results narrative, techniques, recommended figures from thesis
 - [ ] HyperSight — needs project page narrative
 - [ ] DARPA Triage Challenge — needs project page narrative
-- [ ] MesoFlow — needs project page narrative
+- [ ] Bioassay LIMS — needs project page narrative
 - [ ] Jira AI PM — needs project page narrative
 - [ ] PlateHandler / Embedded — needs project page narrative
 
