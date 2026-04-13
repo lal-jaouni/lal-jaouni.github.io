@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MesoFlow LIMS | Laith Al-Jaouni</title>
-  <meta name="description" content="Full-stack laboratory information management system for ECL bioassay experiments with computational image processing pipeline achieving 20-100x speedup.">
+  <meta name="description" content="60,000+ LOC full-stack laboratory information management system with computational image processing achieving 20-100x speedup via Numba JIT.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,9 +33,9 @@
       <a href="index.html" class="project-hero__back">&larr; All Projects</a>
       <h1 class="project-hero__title">MesoFlow LIMS</h1>
       <p class="project-hero__subtitle">
-        A full-stack laboratory information management system built for electrochemiluminescence
-        bioassay experiments. Covers the entire workflow from plate layout design through automated
-        image processing and quantitative reporting.
+        A full-stack laboratory information management system built for bioassay experiments.
+        Manages the complete lifecycle from experimental planning through computational image
+        analysis and quantitative reporting.
       </p>
       <div class="project-hero__meta">
         <div class="project-meta__item">
@@ -44,15 +44,15 @@
         </div>
         <div class="project-meta__item">
           <strong>Organization</strong>
-          Meso Scale Diagnostics
+          Diagnostics R&D
         </div>
         <div class="project-meta__item">
           <strong>Scale</strong>
-          ~55,000 lines of code
+          60,000+ lines of code
         </div>
         <div class="project-meta__item">
           <strong>Stack</strong>
-          FastAPI, React, Numba, OpenCV
+          FastAPI, React, TypeScript, Numba
         </div>
         <div class="project-meta__item">
           <strong>Key Result</strong>
@@ -67,99 +67,140 @@
     <div class="container">
       <div class="project-content">
 
-        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
-          <span style="color:var(--gray-400);font-size:0.9rem">Screenshots coming soon</span>
-        </div>
-
         <h2>The Problem</h2>
         <p>
-          Running ECL bioassay experiments involves a lot of moving parts: designing plate layouts,
-          tracking reagents, configuring instruments, processing raw images, and generating
-          quantitative results. Before MesoFlow, these steps were handled by a patchwork of
-          spreadsheets, standalone scripts, and manual bookkeeping &mdash; each experiment required
-          hours of data wrangling before you could even look at results.
+          Running plate-based bioassay experiments involves a lot of moving parts: designing
+          96-well plate layouts, tracking reagents, configuring instruments, processing raw images,
+          and generating quantitative results. Before MesoFlow, these steps were handled by a
+          patchwork of spreadsheets, standalone scripts, and manual bookkeeping -- each experiment
+          required hours of data wrangling before anyone could look at results.
         </p>
         <p>
           The image processing piece was especially painful. Aligning spot grids on raw plate
-          images, correcting for reader-specific artifacts, and extracting per-spot intensities
+          images, correcting for instrument-specific artifacts, and extracting per-spot intensities
           required computational methods that were too slow for interactive use and too fragile
           for batch processing.
         </p>
 
         <h2>What I Built</h2>
 
-        <h3>Experiment Lifecycle Management</h3>
+        <h3>Full-Stack LIMS (60K+ LOC)</h3>
         <p>
-          A complete workflow system where scientists can design 96-well plate layouts with a
-          drag-and-click editor, configure multi-tab reagent settings, build step-by-step
-          experimental workflows, and track experiments from setup through completion with
-          automatic status tracking and validation.
+          A complete experiment management system: 157 REST endpoints across 19 FastAPI routers,
+          backed by 246 Pydantic data models and 19 service-layer classes. The React frontend
+          has 27 pages with a 96-well plate editor supporting drag-and-click layout design,
+          multi-tab reagent configuration, and 5 concurrent run sessions with click-to-exclude
+          well selection.
+        </p>
+        <p>
+          Data lives in a file-native Parquet + JSON platform with atomic writes -- no database
+          server to manage, fully human-inspectable, and handling 90+ active experiment folders.
+          HTTP Basic Auth with role-based access control (viewer, operator, admin) supports
+          multi-user lab teams.
         </p>
 
         <h3>Computational Image Processing Pipeline</h3>
         <p>
-          The core technical challenge. Each plate image needs a precise grid alignment to extract
-          per-spot signal intensities. I built a two-phase grid search: a coarse pass (~13,000
+          The core technical challenge. Each plate image needs precise grid alignment to extract
+          per-spot signal intensities. I built a two-phase grid search: a coarse pass (~3,700
           iterations covering translation and rotation) followed by a fine pass (~7,700 iterations
-          at sub-pixel precision). Together, that's ~21,000 evaluations per image.
+          at sub-pixel precision). Together, that's over 11,000 evaluations per image.
         </p>
         <p>
-          To make that practical, I optimized the alignment engine with Numba JIT compilation,
-          achieving 20-100x speedup over pure Python. The pipeline also handles MAD-based cosmic
-          ray detection, truncated circle masks for Kivu plate geometry, scale-aware processing
-          across 1x-16x binning levels, and reader-specific gain corrections for three different
-          instrument types (Q60, SQ120, S600).
-        </p>
-
-        <h3>Multi-Reader Support</h3>
-        <p>
-          Each MSD plate reader has different sensor geometries: the Q60 reads a single 1040&times;1040
-          sector, the SQ120 reads four 512&times;512 sectors, and the S600 reads sixteen sectors. MesoFlow
-          handles all three with reader-specific calibration, gain corrections, and spot factor
-          adjustments, producing consistent results across instruments.
+          To make that practical, I optimized the alignment engine with Numba JIT compilation
+          across 8 hot-path functions, achieving 20-100x speedup over pure Python. The pipeline
+          also handles MAD-based cosmic ray detection (8x MAD threshold), truncated-circle ROI
+          masks for different plate geometries, scale-aware processing across multiple binning
+          levels, and per-spot correction factor calibration.
         </p>
 
-        <h3>Quantitative Analysis</h3>
+        <h3>Multi-Instrument Support</h3>
         <p>
-          Built a full scientific validation suite: binning experiments across 5 levels on 2 readers
-          (570+ per-image measurements), SNR and detection limit calculations, coefficient of
-          variation analysis, and gain cross-calibration. Results feed into 8+ publication-quality
-          plot types for reporting.
+          Different plate readers have different sensor geometries and gain characteristics.
+          MesoFlow handles multiple instrument types with reader-specific calibration, gain
+          corrections, and spot factor adjustments, producing consistent results regardless
+          of which instrument captured the data.
         </p>
 
         <h3>Hardware Integration</h3>
         <p>
-          Integrated directly with the Mini Collet Dispenser via a custom serial driver (842 lines),
-          with step-by-step workflow execution, 5 concurrent instrument tabs, and operator tracking.
+          Integrated directly with a laboratory fluidic dispenser via a custom serial driver,
+          with step-by-step workflow execution, concurrent instrument control tabs, and
+          operator tracking. The serial I/O runs on a ThreadPoolExecutor to keep the async
+          FastAPI server responsive.
         </p>
+
+        <h3>Batch Processing</h3>
+        <p>
+          Multi-select experiment list with continue-on-error semantics, per-experiment progress
+          tracking, and template auto-matching on instrument and plate configuration. A three-stage
+          data import pipeline filters records against plate layout and run exclusions, reporting
+          transparent record counts at each stage.
+        </p>
+
+        <h2>Key Results</h2>
+        <table style="width:100%;border-collapse:collapse;margin:var(--space-lg) 0">
+          <tr style="border-bottom:2px solid var(--gray-200)">
+            <th style="text-align:left;padding:0.75rem 1rem">Metric</th>
+            <th style="text-align:left;padding:0.75rem 1rem">Value</th>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Total Codebase</strong></td>
+            <td style="padding:0.75rem 1rem">60,000+ LOC (Python + TypeScript)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>REST Endpoints</strong></td>
+            <td style="padding:0.75rem 1rem">157 across 19 routers</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Data Models</strong></td>
+            <td style="padding:0.75rem 1rem">246 Pydantic models</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Image Processing Speedup</strong></td>
+            <td style="padding:0.75rem 1rem">20-100x via Numba JIT</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Grid Search Coverage</strong></td>
+            <td style="padding:0.75rem 1rem">11,000+ iterations per image (8x more thorough than baseline)</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Tests</strong></td>
+            <td style="padding:0.75rem 1rem">116 pytest functions with tiered coverage targets</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1rem"><strong>Active Experiments</strong></td>
+            <td style="padding:0.75rem 1rem">90+ managed in production</td>
+          </tr>
+        </table>
 
         <h2>Tech Stack</h2>
         <div class="skills-grid" style="margin-top:var(--space-lg)">
           <div class="skill-category">
             <h3 class="skill-category__title">Backend</h3>
             <p class="skill-category__items">
-              Python 3.12, FastAPI, Pydantic, 157+ REST endpoints,
-              244+ data models, 19 service modules, Parquet storage
+              Python 3.11+, FastAPI, Pydantic, 157 REST endpoints,
+              246 data models, 19 service modules, Parquet + JSON storage
             </p>
           </div>
           <div class="skill-category">
             <h3 class="skill-category__title">Frontend</h3>
             <p class="skill-category__items">
-              React 18, TypeScript 5.6, Vite, TailwindCSS, shadcn/ui,
-              Plotly.js, 27 page components, 38 UI components
+              React 18, TypeScript, Vite, TailwindCSS, shadcn/ui,
+              TanStack React Query, Plotly.js, 27 pages
             </p>
           </div>
           <div class="skill-category">
             <h3 class="skill-category__title">Image Processing</h3>
             <p class="skill-category__items">
-              Numba JIT (20-100x speedup), OpenCV, NumPy, SciPy,
-              Pillow, bilinear interpolation, FWHM analysis
+              Numba JIT (20-100x speedup), NumPy, SciPy,
+              MAD outlier detection, two-phase grid search
             </p>
           </div>
           <div class="skill-category">
             <h3 class="skill-category__title">Testing &amp; Quality</h3>
             <p class="skill-category__items">
-              pytest (139+ tests), Ruff, MyPy, pre-commit hooks,
+              pytest (116 tests), Ruff, MyPy,
               HTTP Basic Auth with RBAC
             </p>
           </div>
@@ -168,7 +209,7 @@
         <h2>What This Taught Me</h2>
         <p>
           MesoFlow taught me that scientific software lives or dies by how well it models the
-          actual workflow of the people using it. The hardest problems weren't algorithmic &mdash;
+          actual workflow of the people using it. The hardest problems weren't algorithmic --
           they were understanding why a bench scientist configures a plate layout the way they do,
           why certain validation steps can't be skipped, and how to surface results in a way that
           maps to how they think about their experiments. The Numba optimization work was technically
@@ -191,6 +232,6 @@
     </div>
   </footer>
 
-  <script src="../js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
