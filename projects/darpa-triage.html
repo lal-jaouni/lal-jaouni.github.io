@@ -89,20 +89,20 @@
             <th style="text-align:left;padding:0.75rem 1rem">Result</th>
           </tr>
           <tr style="border-bottom:1px solid var(--gray-100)">
-            <td style="padding:0.75rem 1rem"><strong>Prediction Discrimination</strong></td>
-            <td style="padding:0.75rem 1rem">AUROC 0.71&ndash;0.89 across 5 LSI categories</td>
+            <td style="padding:0.75rem 1rem"><strong>Data Scale</strong></td>
+            <td style="padding:0.75rem 1rem">327 GB of multi-modal clinical data, 7,000+ patients</td>
           </tr>
           <tr style="border-bottom:1px solid var(--gray-100)">
-            <td style="padding:0.75rem 1rem"><strong>Waveform Prediction</strong></td>
-            <td style="padding:0.75rem 1rem">0.76 correlation via transfer learning (5M+ external segments)</td>
+            <td style="padding:0.75rem 1rem"><strong>Feature Engineering</strong></td>
+            <td style="padding:0.75rem 1rem">2,200+ features from physiological waveforms and EHR</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--gray-100)">
+            <td style="padding:0.75rem 1rem"><strong>Transfer Learning</strong></td>
+            <td style="padding:0.75rem 1rem">Pre-trained on 5M+ external physiological segments</td>
           </tr>
           <tr style="border-bottom:1px solid var(--gray-100)">
             <td style="padding:0.75rem 1rem"><strong>Blood Pressure Accuracy</strong></td>
-            <td style="padding:0.75rem 1rem">Meets AAMI clinical standards (SBP and DBP)</td>
-          </tr>
-          <tr style="border-bottom:1px solid var(--gray-100)">
-            <td style="padding:0.75rem 1rem"><strong>Features Engineered</strong></td>
-            <td style="padding:0.75rem 1rem">2,200+ from waveforms + EHR</td>
+            <td style="padding:0.75rem 1rem">Meets AAMI clinical standards</td>
           </tr>
           <tr style="border-bottom:1px solid var(--gray-100)">
             <td style="padding:0.75rem 1rem"><strong>Patient Coverage</strong></td>
@@ -110,11 +110,11 @@
           </tr>
           <tr style="border-bottom:1px solid var(--gray-100)">
             <td style="padding:0.75rem 1rem"><strong>Streaming Latency</strong></td>
-            <td style="padding:0.75rem 1rem">&lt;2ms per prediction (300x under budget)</td>
+            <td style="padding:0.75rem 1rem">Real-time prediction, well under latency budget</td>
           </tr>
           <tr>
-            <td style="padding:0.75rem 1rem"><strong>Per-Category Optimization</strong></td>
-            <td style="padding:0.75rem 1rem">+23% composite score over global model</td>
+            <td style="padding:0.75rem 1rem"><strong>Experiment Scale</strong></td>
+            <td style="padding:0.75rem 1rem">56 experiments across 8 research objectives</td>
           </tr>
         </table>
 
@@ -127,10 +127,10 @@
           quality assessment, and feature extraction.
         </p>
         <p>
-          A critical early discovery: ICU sensors connect at different times, creating 22&ndash;276
-          seconds of temporal misalignment between signals in the same recording session. Fixing
+          A critical early discovery: ICU sensors connect at different times, creating significant
+          temporal misalignment between signals in the same recording session. Fixing
           this with chunk-by-chunk timestamp intersection was the single largest performance gain
-          of the project (+29%), larger than any architecture change.
+          of the project -- larger than any architecture change.
         </p>
         <p>
           Rather than discarding noisy segments (which loses the sickest patients), I built a
@@ -143,19 +143,18 @@
           Designed 12 distinct feature families capturing different aspects of hemodynamic physiology:
         </p>
         <ul>
-          <li><strong>Clinical hemodynamics</strong> (54 features): SBP, DBP, MAP, pulse pressure,
-            shock index, heart rate variability, waveform morphology (dicrotic notch depth, systolic
-            upstroke time, diastolic decay)</li>
-          <li><strong>Wavelet decomposition</strong> (336 features): 5-level Daubechies DWT across
-            6 frequency bands, capturing respiratory modulation, pulse dynamics, and vascular tone</li>
-          <li><strong>Temporal trends</strong> (168+ features): Rolling 5-min and 15-min statistics
-            (delta, slope, mean, std, min, max) tracking hemodynamic trajectory</li>
-          <li><strong>Sample entropy</strong> (12 features): Complexity analysis of physiological
-            time series, validated for predicting hemodynamic instability</li>
-          <li><strong>Extended statistics</strong> (84+ features): Exponential moving averages,
-            acceleration, trend reliability, robust percentiles</li>
-          <li><strong>EHR features</strong> (600+ features): Extracted from 28 clinical tables
-            across 2 hospital sites with schema harmonization</li>
+          <li><strong>Clinical hemodynamics:</strong> Blood pressure dynamics, shock indices,
+            heart rate variability, and waveform morphology features</li>
+          <li><strong>Wavelet decomposition:</strong> Multi-level discrete wavelet transform
+            capturing respiratory modulation, pulse dynamics, and vascular tone</li>
+          <li><strong>Temporal trends:</strong> Rolling window statistics tracking hemodynamic
+            trajectory over multiple time horizons</li>
+          <li><strong>Complexity analysis:</strong> Sample entropy and nonlinear dynamics features
+            validated for detecting hemodynamic instability</li>
+          <li><strong>Extended statistics:</strong> Exponential moving averages,
+            acceleration, trend reliability, and robust percentile features</li>
+          <li><strong>EHR features:</strong> Extracted from dozens of clinical tables
+            across multiple hospital sites with schema harmonization</li>
         </ul>
         <p>
           A multi-phase feature selection pipeline (mutual information filtering, correlation
@@ -165,8 +164,8 @@
 
         <h3>Transfer Learning for Waveform Prediction</h3>
         <p>
-          Adapted a nested U-Net architecture (44M parameters) from image segmentation to 1D
-          physiological waveform prediction. Pre-trained on 5M+ external physiological segments
+          Adapted a nested U-Net architecture from image segmentation to 1D
+          physiological waveform prediction. Pre-trained on millions of external physiological segments
           using a novel lag-invariant loss function that handles temporal misalignment between
           clinical sensors.
         </p>
@@ -179,21 +178,20 @@
 
         <h3>Per-Category Prediction Optimization</h3>
         <p>
-          The five LSI categories have fundamentally different pathophysiology. Airway management
-          depends on respiratory features; blood product needs correlate with hemorrhage indicators;
-          vasopressor use tracks hemodynamic instability. A single global model compromises on all categories.
+          Different intervention categories have fundamentally different pathophysiology and
+          predictive signals. A single global model compromises on all categories.
         </p>
         <p>
           I trained independent gradient boosting models per category, each with its own feature
           selection, hyperparameter optimization (50 Bayesian trials via Optuna), and evaluation.
-          This per-category approach improved composite performance by 23% over a global model.
+          This per-category approach significantly outperformed a single global model.
         </p>
 
         <h3>Streaming Prediction System</h3>
         <p>
-          Built a stateful streaming predictor that processes 30-second physiological segments in
-          real time, maintaining patient state across a rolling 30-minute window. Achieves &lt;2ms
-          prediction latency, 300x under the challenge's latency budget.
+          Built a stateful streaming predictor that processes physiological segments in
+          real time, maintaining patient state across a rolling window. Achieves real-time
+          prediction well within the challenge's latency budget.
         </p>
 
         <h2>Technical Differentiators</h2>
@@ -201,15 +199,15 @@
           <div style="padding:var(--space-lg);background:var(--gray-50);border-radius:var(--border-radius)">
             <h3 style="margin-top:0">Data Quality > Architecture</h3>
             <p style="margin-bottom:0">
-              Temporal alignment fixes yielded +29% improvement, larger than any model architecture
+              Temporal alignment fixes yielded a larger improvement than any model architecture
               change. In clinical ML, the data pipeline is the model.
             </p>
           </div>
           <div style="padding:var(--space-lg);background:var(--gray-50);border-radius:var(--border-radius)">
             <h3 style="margin-top:0">Quality as Features</h3>
             <p style="margin-bottom:0">
-              Signal quality scores fed as continuous model inputs rather than binary discard gates.
-              94% patient coverage vs 60% with traditional gating.
+              Signal quality scores fed as continuous model inputs rather than binary discard gates,
+              dramatically improving patient coverage over traditional quality gating.
             </p>
           </div>
           <div style="padding:var(--space-lg);background:var(--gray-50);border-radius:var(--border-radius)">
@@ -230,10 +228,10 @@
 
         <h2>Experiment Rigor</h2>
         <p>
-          Conducted 56 systematic experiments across 8 research objectives, each with formal
-          configuration, reproducible seeds, and tracked results. Built a config-driven experiment
-          framework (39 modules, 53 unit tests) enabling rapid hypothesis testing with YAML-based
-          schema validation.
+          Conducted dozens of systematic experiments across multiple research objectives, each with
+          formal configuration, reproducible seeds, and tracked results. Built a config-driven
+          experiment framework enabling rapid hypothesis testing with schema validation and
+          automated reporting.
         </p>
         <p>
           Produced publication-quality scientific reports using Quarto with LaTeX typesetting,
