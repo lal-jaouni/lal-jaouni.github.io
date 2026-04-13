@@ -59,19 +59,16 @@
       <div class="projects-grid">
 
         <a href="projects/darpa-triage.html" class="project-card" style="text-decoration:none;color:inherit">
-          <div class="project-card__img" style="background:linear-gradient(135deg, #0f1221 0%, #1a1f36 40%, #2d3352 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
-            <svg width="320" height="120" viewBox="0 0 320 120" fill="none" style="opacity:0.85;width:90%;height:auto">
-              <!-- ECG trace (green) - realistic QRS complexes -->
-              <path d="M0 58 L15 58 L20 56 L25 60 L28 58 L32 58 L35 55 L37 15 L40 72 L43 58 L48 55 L55 58 L75 58 L80 56 L85 60 L88 58 L92 58 L95 55 L97 15 L100 72 L103 58 L108 55 L115 58 L135 58 L140 56 L145 60 L148 58 L152 58 L155 55 L157 15 L160 72 L163 58 L168 55 L175 58 L195 58 L200 56 L205 60 L208 58 L212 58 L215 55 L217 15 L220 72 L223 58 L228 55 L235 58 L255 58 L260 56 L265 60 L268 58 L272 58 L275 55 L277 15 L280 72 L283 58 L288 55 L295 58 L320 58" stroke="#10b981" stroke-width="1.5" fill="none"/>
-              <!-- ABP trace (blue) - arterial pressure with dicrotic notch -->
-              <path d="M0 85 Q8 82 12 60 Q14 50 16 55 Q18 52 20 58 Q25 80 35 85 Q45 88 55 85 Q63 82 67 60 Q69 50 71 55 Q73 52 75 58 Q80 80 90 85 Q100 88 110 85 Q118 82 122 60 Q124 50 126 55 Q128 52 130 58 Q135 80 145 85 Q155 88 165 85 Q173 82 177 60 Q179 50 181 55 Q183 52 185 58 Q190 80 200 85 Q210 88 220 85 Q228 82 232 60 Q234 50 236 55 Q238 52 240 58 Q245 80 255 85 Q265 88 275 85 Q283 82 287 60 Q289 50 291 55 Q293 52 295 58 Q300 80 310 85 L320 85" stroke="#4a7cf7" stroke-width="1.5" fill="none"/>
-              <!-- PPG trace (white, subtle) -->
-              <path d="M0 100 Q10 98 15 92 Q18 88 22 95 Q30 102 45 100 Q55 98 60 92 Q63 88 67 95 Q75 102 90 100 Q100 98 105 92 Q108 88 112 95 Q120 102 135 100 Q145 98 150 92 Q153 88 157 95 Q165 102 180 100 Q190 98 195 92 Q198 88 202 95 Q210 102 225 100 Q235 98 240 92 Q243 88 247 95 Q255 102 270 100 Q280 98 285 92 Q288 88 292 95 Q300 102 315 100 L320 100" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none"/>
-              <!-- Labels -->
-              <text x="4" y="12" fill="#10b981" font-size="8" font-family="Inter, sans-serif" opacity="0.7">ECG</text>
-              <text x="4" y="50" fill="#4a7cf7" font-size="8" font-family="Inter, sans-serif" opacity="0.7">ABP</text>
-              <text x="4" y="95" fill="rgba(255,255,255,0.5)" font-size="8" font-family="Inter, sans-serif" opacity="0.7">PPG</text>
-            </svg>
+          <div class="project-card__img" style="background:linear-gradient(160deg, #0a0e1a 0%, #131836 50%, #1a2040 100%);display:flex;flex-direction:column;justify-content:center;padding:1.5rem 2rem;position:relative;overflow:hidden">
+            <svg width="100%" height="100" viewBox="0 0 400 100" preserveAspectRatio="none" fill="none" style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.06"><line x1="0" y1="25" x2="400" y2="25" stroke="#fff" stroke-width="0.5"/><line x1="0" y1="50" x2="400" y2="50" stroke="#fff" stroke-width="0.5"/><line x1="0" y1="75" x2="400" y2="75" stroke="#fff" stroke-width="0.5"/></svg>
+            <div style="position:relative;z-index:1">
+              <svg width="100%" viewBox="0 0 360 40" preserveAspectRatio="xMidYMid meet" fill="none" style="display:block;margin-bottom:12px">
+                <text x="0" y="8" fill="#10b981" font-size="6" font-family="Inter,sans-serif" letter-spacing="0.05em" opacity="0.6">ECG</text>
+                <path d="M24 20 L60 20 L66 18 L72 22 L76 20 L82 20 L86 17 L89 4 L92 32 L95 20 L100 17 L108 20 L144 20 L150 18 L156 22 L160 20 L166 20 L170 17 L173 4 L176 32 L179 20 L184 17 L192 20 L228 20 L234 18 L240 22 L244 20 L250 20 L254 17 L257 4 L260 32 L263 20 L268 17 L276 20 L312 20 L318 18 L324 22 L328 20 L334 20 L338 17 L341 4 L344 32 L347 20 L352 17 L360 20" stroke="#10b981" stroke-width="1.8" fill="none"/></svg>
+              <svg width="100%" viewBox="0 0 360 40" preserveAspectRatio="xMidYMid meet" fill="none" style="display:block">
+                <text x="0" y="8" fill="#4a7cf7" font-size="6" font-family="Inter,sans-serif" letter-spacing="0.05em" opacity="0.6">ABP</text>
+                <path d="M24 30 Q34 28 40 12 Q43 6 46 10 Q48 8 50 14 Q56 26 68 30 Q78 32 88 30 Q98 28 104 12 Q107 6 110 10 Q112 8 114 14 Q120 26 132 30 Q142 32 152 30 Q162 28 168 12 Q171 6 174 10 Q176 8 178 14 Q184 26 196 30 Q206 32 216 30 Q226 28 232 12 Q235 6 238 10 Q240 8 242 14 Q248 26 260 30 Q270 32 280 30 Q290 28 296 12 Q299 6 302 10 Q304 8 306 14 Q312 26 324 30 Q334 32 344 30 L360 30" stroke="#4a7cf7" stroke-width="1.8" fill="none"/></svg>
+            </div>
           </div>
           <div class="project-card__body">
             <div class="project-card__tags">
