@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinical RAG Assistant | Laith Al-Jaouni</title>
+  <meta name="description" content="Production-grade retrieval-augmented generation system for clinical Q&A with 4-layer safety guardrails, achieving 0% hallucination rate.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="../index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="index.html" class="active">Projects</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Project Hero -->
+  <section class="project-hero">
+    <div class="container">
+      <a href="index.html" class="project-hero__back">&larr; All Projects</a>
+      <h1 class="project-hero__title">Clinical RAG Assistant</h1>
+      <p class="project-hero__subtitle">
+        A production-grade retrieval-augmented generation system for clinical Q&A with 4-layer safety guardrails, achieving 0% hallucination rate on evaluation. Designed for healthcare organizations that need trustworthy AI, not just smart AI.
+      </p>
+      <div class="project-hero__meta">
+        <div class="project-meta__item">
+          <strong>Role</strong>
+          Sole Developer & Architect
+        </div>
+        <div class="project-meta__item">
+          <strong>Duration</strong>
+          8 weeks
+        </div>
+        <div class="project-meta__item">
+          <strong>Test Coverage</strong>
+          167 tests
+        </div>
+        <div class="project-meta__item">
+          <strong>Tech Stack</strong>
+          Python, FastAPI, PostgreSQL, pgvector, Ollama, Streamlit, PubMedBERT
+        </div>
+        <div class="project-meta__item">
+          <strong>Key Result</strong>
+          0% hallucination rate with 4-layer safety pipeline
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Content -->
+  <section class="section">
+    <div class="container">
+      <div class="project-content">
+
+        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
+          <span style="color:var(--gray-400);font-size:0.9rem">Clinical inference pipeline</span>
+        </div>
+
+        <h2>The Problem</h2>
+
+        <p>
+          Open-source RAG systems work great for customer support chatbots. They are fundamentally unsuitable for clinical settings without significant additional engineering. The standard workflow -- retrieve, generate, return -- provides no mechanism to detect or prevent hallucination, no way to verify source attribution, and no confidence calibration for high-stakes questions.
+        </p>
+
+        <p>
+          When an LLM generates a plausible-sounding claim about drug dosing or contraindications that isn't grounded in the retrieved sources, the consequences extend beyond a bad user experience. Healthcare organizations building clinical AI tools need:
+        </p>
+
+        <ul>
+          <li><strong>Hallucination detection:</strong> Sentence-level grounding verification against retrieved sources</li>
+          <li><strong>Source attribution:</strong> Verifiable citations with PMIDs, publication years, and traceable claims</li>
+          <li><strong>Confidence quantification:</strong> Explicit uncertainty signals so clinicians know when the system is guessing</li>
+          <li><strong>Domain boundaries:</strong> Detection and refusal of out-of-domain queries</li>
+        </ul>
+
+        <h2>What I Built</h2>
+
+        <h3>4-Layer Safety Architecture</h3>
+
+        <p>
+          Rather than stacking a single guardrail on top of a base RAG pipeline, I implemented four independent safety layers that each catch different failure modes:
+        </p>
+
+        <p>
+          <strong>Layer 1: Domain-Specific Retrieval</strong> uses PubMedBERT embeddings (trained on biomedical literature) combined with hybrid search -- Reciprocal Rank Fusion over pgvector cosine similarity (weight 0.6) and BM25 keyword matching (weight 0.4). This matters because generic embeddings fail on clinical abbreviations and domain-specific terminology. Automatic query expansion via a curated synonym map ensures "MTP" retrieves "massive transfusion protocol."
+        </p>
+
+        <p>
+          <strong>Layer 2: Source Grounding Verification</strong> checks every sentence in the LLM's answer against the retrieved source chunks using embedding cosine similarity. If maximum similarity falls below 0.50, the sentence is flagged as potentially ungrounded. A secondary n-gram overlap check catches semantic similarity mismatches. This prevents the most dangerous hallucination pattern: synthesized information that sounds authoritative.
+        </p>
+
+        <p>
+          <strong>Layer 3: Confidence Scoring</strong> is a composite metric combining citation density (how many claims are backed by sources), grounding score (average embedding similarity between answer and sources), and uncertainty language detection (hedging phrases like "may," "possibly," "unclear"). Answers scoring below 0.70 confidence trigger a hard override: the answer is refused entirely with a message directing clinicians to primary sources.
+        </p>
+
+        <p>
+          <strong>Layer 4: Direct Advice Detection</strong> uses regex patterns to catch prescriptive language: "you should administer," "give the patient X mg," "the recommended dose is." These trigger a safety flag regardless of confidence score, because a retrieval system should surface evidence, not prescribe treatment.
+        </p>
+
+        <h3>Production-Grade Evaluation</h3>
+
+        <p>
+          Standard RAG metrics (answer relevance, context precision) are necessary but insufficient for clinical use. I added clinical-specific evaluation:
+        </p>
+
+        <table style="width:100%;margin:var(--space-lg) 0;border-collapse:collapse;font-size:0.95rem">
+          <thead>
+            <tr style="border-bottom:2px solid var(--gray-100)">
+              <th style="text-align:left;padding:var(--space-md) 0;font-weight:600;color:var(--navy)">Metric</th>
+              <th style="text-align:left;padding:var(--space-md) 0;font-weight:600;color:var(--navy)">Target</th>
+              <th style="text-align:left;padding:var(--space-md) 0;font-weight:600;color:var(--navy)">Achieved</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--gray-100)">
+              <td style="padding:var(--space-md) 0">Hallucination rate</td>
+              <td style="padding:var(--space-md) 0">&lt; 2%</td>
+              <td style="padding:var(--space-md) 0"><strong>0.0%</strong></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-100)">
+              <td style="padding:var(--space-md) 0">Faithfulness (n-gram overlap)</td>
+              <td style="padding:var(--space-md) 0">&gt; 0.85</td>
+              <td style="padding:var(--space-md) 0"><strong>0.85+</strong></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-100)">
+              <td style="padding:var(--space-md) 0">Answer relevance</td>
+              <td style="padding:var(--space-md) 0">&gt; 0.80</td>
+              <td style="padding:var(--space-md) 0"><strong>0.80+</strong></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-100)">
+              <td style="padding:var(--space-md) 0">Context precision</td>
+              <td style="padding:var(--space-md) 0">&gt; 0.85</td>
+              <td style="padding:var(--space-md) 0"><strong>0.85+</strong></td>
+            </tr>
+            <tr>
+              <td style="padding:var(--space-md) 0">Safe refusal rate</td>
+              <td style="padding:var(--space-md) 0">Acceptable</td>
+              <td style="padding:var(--space-md) 0"><strong>~15%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          The 15% safe refusal rate is intentional. Rather than answering with low confidence, the system refuses queries it can't ground in sources. For clinical settings, this is the correct tradeoff: it's far better to say "I don't have enough evidence" than to fabricate.
+        </p>
+
+        <h2>Technical Decisions</h2>
+
+        <h3>Why Local LLM Inference (Ollama)</h3>
+
+        <p>
+          All LLM calls are processed locally via Ollama running on the same machine. Patient data and clinical queries never leave the network. This is non-negotiable for healthcare deployments, and it eliminates vendor lock-in and API cost concerns for at-scale deployments.
+        </p>
+
+        <h3>Why Hybrid Search</h3>
+
+        <p>
+          Pure vector search fails on clinical abbreviations and exact-match queries. Reciprocal Rank Fusion combines pgvector cosine similarity with BM25 keyword matching. This matters because "factor V Leiden" and "factor VIII" are clinically distinct but semantically similar. The hybrid approach catches both semantic and lexical matches.
+        </p>
+
+        <h3>Why PubMedBERT</h3>
+
+        <p>
+          PubMedBERT (<code>microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract</code>) is trained on biomedical literature and dramatically outperforms general-purpose embeddings on clinical text. The performance gap is largest on abbreviation-heavy queries and domain-specific terminology.
+        </p>
+
+        <h3>Why Low Temperature (0.1)</h3>
+
+        <p>
+          Temperature 0.1 produces deterministic, reproducible generation. It sacrifices prose fluency for accuracy -- clinical correctness beats readability. Creative hallucination is minimized at the cost of more formulaic answers.
+        </p>
+
+        <h3>Why Conservative Chunking (200 tokens, 50 overlap)</h3>
+
+        <p>
+          Smaller chunks mean more precise retrieval at the cost of less context per chunk. The 50-token overlap prevents information loss at chunk boundaries. Larger chunks reduce retrieval precision and increase hallucination risk.
+        </p>
+
+        <h2>What I Learned</h2>
+
+        <p>
+          This project revealed the gap between "RAG demo" and "clinically deployable RAG." Healthcare organizations typically need help in four areas:
+        </p>
+
+        <p>
+          <strong>Evaluation Infrastructure:</strong> Most teams can stand up a RAG pipeline in a week. Few have the infrastructure to measure whether it's safe. Building domain-specific evaluation sets, implementing sentence-level grounding checks, and establishing meaningful safety thresholds requires both clinical domain expertise and ML engineering.
+        </p>
+
+        <p>
+          <strong>Safety Engineering:</strong> Off-the-shelf guardrails (content filters, toxicity detectors) are designed for consumer AI. Clinical safety requires domain-specific mechanisms: grounding verification against medical literature, confidence calibration for clinical questions, and detection of prescriptive language that crosses the line from information to advice.
+        </p>
+
+        <p>
+          <strong>Regulatory Navigation:</strong> The FDA's guidance on Clinical Decision Support Software defines four criteria determining whether a system is regulated as a medical device. Designing a system that stays within non-device classification while remaining clinically useful requires understanding both technical and regulatory constraints.
+        </p>
+
+        <p>
+          <strong>Deployment Complexity:</strong> Running a clinical RAG system in production means HIPAA-compliant infrastructure, audit logging, access controls, and monitoring. The ML pipeline is often the easy part. The compliance and operations layer is where most projects stall.
+        </p>
+
+        <h2>Tech Stack</h2>
+
+        <div class="skills-grid" style="margin-top:var(--space-lg)">
+          <div class="skill-category">
+            <h3 class="skill-category__title">Backend & LLM</h3>
+            <p class="skill-category__items">
+              FastAPI, Ollama (local inference), temperature control, streaming responses
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Retrieval & Embeddings</h3>
+            <p class="skill-category__items">
+              PostgreSQL with pgvector, PubMedBERT embeddings, BM25 ranking, Reciprocal Rank Fusion, hybrid search
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Data Ingestion</h3>
+            <p class="skill-category__items">
+              PubMed abstracts, FDA guidance documents, ClinicalTrials.gov data, chunk-based document processing
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Safety & Evaluation</h3>
+            <p class="skill-category__items">
+              Sentence-level grounding verification, n-gram overlap metrics, confidence scoring, regex-based pattern detection
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Frontend</h3>
+            <p class="skill-category__items">
+              Streamlit, real-time query processing, confidence score display, source card rendering
+            </p>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category__title">Testing & Quality</h3>
+            <p class="skill-category__items">
+              167 unit tests, integration tests, adversarial query testing, hallucination benchmarks
+            </p>
+          </div>
+        </div>
+
+        <h2>Next Steps</h2>
+
+        <p>
+          The project is open source and actively developed. Current focus areas:
+        </p>
+
+        <ul>
+          <li>Expanding the source corpus to additional clinical domains (cardiology, oncology, surgery)</li>
+          <li>Adding real-time PubMed monitoring for new publications relevant to stored queries</li>
+          <li>Implementing user feedback loops for continuous safety calibration</li>
+          <li>Building deployment templates for common healthcare infrastructure (AWS GovCloud, Azure for Healthcare)</li>
+          <li>Consulting package: helping healthcare organizations adapt this architecture for their own domains</li>
+        </ul>
+
+        <p style="margin-top:var(--space-3xl);color:var(--gray-400);font-size:0.9rem">
+          Open source: <a href="https://github.com/lal-jaouni/clinical-rag-assistant" target="_blank" rel="noopener">Clinical RAG Assistant on GitHub</a>
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
