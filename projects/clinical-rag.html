@@ -34,7 +34,7 @@
       <a href="index.html" class="project-hero__back">&larr; All Projects</a>
       <h1 class="project-hero__title">Clinical RAG Assistant</h1>
       <p class="project-hero__subtitle">
-        A production-grade retrieval-augmented generation system for clinical Q&A with 4-layer safety guardrails, achieving 0% hallucination rate on evaluation. Designed for healthcare organizations that need trustworthy AI, not just smart AI.
+        Safety-first retrieval-augmented generation for clinical decision support. Four independent safety layers produce a 0% hallucination rate by refusing answers the system can't ground in evidence. Built for regulated environments where a hallucinated claim about drug dosing has real consequences.
       </p>
       <div class="project-hero__meta">
         <div class="project-meta__item">
@@ -65,10 +65,6 @@
   <section class="section">
     <div class="container">
       <div class="project-content">
-
-        <div class="project-card__img" style="display:flex;align-items:center;justify-content:center;background:var(--navy);height:300px;border-radius:var(--border-radius);margin-bottom:var(--space-xl)">
-          <span style="color:var(--gray-400);font-size:0.9rem">Clinical inference pipeline</span>
-        </div>
 
         <h2>The Problem</h2>
 
@@ -190,10 +186,10 @@
           Smaller chunks mean more precise retrieval at the cost of less context per chunk. The 50-token overlap prevents information loss at chunk boundaries. Larger chunks reduce retrieval precision and increase hallucination risk.
         </p>
 
-        <h2>What I Learned</h2>
+        <h2>Why This Is Hard</h2>
 
         <p>
-          This project revealed the gap between "RAG demo" and "clinically deployable RAG." Healthcare organizations typically need help in four areas:
+          The gap between a RAG demo and a clinically deployable RAG system is where most teams stall. Four areas consistently require deep expertise:
         </p>
 
         <p>
@@ -205,11 +201,11 @@
         </p>
 
         <p>
-          <strong>Regulatory Navigation:</strong> The FDA's guidance on Clinical Decision Support Software defines four criteria determining whether a system is regulated as a medical device. Designing a system that stays within non-device classification while remaining clinically useful requires understanding both technical and regulatory constraints.
+          <strong>Regulatory Navigation:</strong> The FDA's guidance on Clinical Decision Support Software defines four criteria determining whether a system is regulated as a medical device. Designing a system that stays within non-device classification while remaining clinically useful requires understanding both technical and regulatory constraints. This system is architected for non-device CDS classification with full audit trail support and 21 CFR Part 11 principles.
         </p>
 
         <p>
-          <strong>Deployment Complexity:</strong> Running a clinical RAG system in production means HIPAA-compliant infrastructure, audit logging, access controls, and monitoring. The ML pipeline is often the easy part. The compliance and operations layer is where most projects stall.
+          <strong>Deployment Complexity:</strong> Running a clinical RAG system in production means HIPAA-compliant infrastructure, audit logging, access controls, and monitoring. The ML pipeline is often the easy part. The compliance and operations layer is where most projects stall. This system uses local-only LLM inference (Ollama) so clinical queries never leave the network.
         </p>
 
         <h2>Tech Stack</h2>
@@ -261,10 +257,9 @@
 
         <ul>
           <li>Expanding the source corpus to additional clinical domains (cardiology, oncology, surgery)</li>
-          <li>Adding real-time PubMed monitoring for new publications relevant to stored queries</li>
+          <li>External benchmark validation against MIRAGE and PubMedQA evaluation frameworks</li>
           <li>Implementing user feedback loops for continuous safety calibration</li>
-          <li>Building deployment templates for common healthcare infrastructure (AWS GovCloud, Azure for Healthcare)</li>
-          <li>Consulting package: helping healthcare organizations adapt this architecture for their own domains</li>
+          <li>Building deployment templates for regulated healthcare infrastructure (AWS GovCloud, Azure for Healthcare)</li>
         </ul>
 
         <p style="margin-top:var(--space-3xl);color:var(--gray-400);font-size:0.9rem">
