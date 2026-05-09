@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laith Al-Jaouni | Biomedical Engineer + ML Researcher</title>
-  <meta name="description" content="ML engineer building healthcare AI systems. DARPA triage challenge, clinical RAG with safety guardrails, FDA SaMD tooling. Signal processing, production ML pipelines, and clinical data engineering.">
+  <title>Laith Al-Jaouni | Biomedical ML Engineer</title>
+  <meta name="description" content="Biomedical ML engineer working on the DARPA Triage Challenge. Clinical signal processing, scientific computing, and end-to-end ML pipelines on biomedical data. M.S. Biomedical Engineering, Virginia Tech.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,10 +33,10 @@
   <section class="hero">
     <div class="container">
       <div class="hero__content">
-        <span class="hero__label">ML Engineer &middot; Healthcare AI &middot; Clinical Safety</span>
-        <h1 class="hero__title">I build ML systems for healthcare, from raw clinical data to production-safe predictions.</h1>
+        <span class="hero__label">Biomedical ML Engineer &middot; Clinical Data &middot; Scientific Computing</span>
+        <h1 class="hero__title">I build machine learning systems on biomedical data &mdash; from raw signals to deployed predictions.</h1>
         <p class="hero__subtitle">
-          Currently on a DARPA-funded team predicting life-saving interventions from streaming physiological data. I also build safety-first RAG systems for clinical decision support (0% hallucination rate, 167 tests) and open-source tooling for FDA AI/ML submissions. My background spans bench science, lab automation, data engineering, and clinical ML. Open to full-time roles, consulting, and research collaborations.
+          Currently on a DARPA-funded team at MSAI Labs predicting life-saving interventions from streaming physiological data across 7,000+ patients. My background combines bench biomedical research, laboratory instrumentation, scientific computing (COMSOL, JAX, FEA), and end-to-end ML pipelines &mdash; the rare profile of an ML engineer who actually understands the biology and the instruments that generated the data.
         </p>
         <div class="hero__cta">
           <a href="projects/index.html" class="btn btn--primary">View Projects</a>
@@ -119,22 +119,22 @@
           </div>
         </a>
 
-        <a href="projects/platehandler.html" class="project-card" style="text-decoration:none;color:inherit">
-          <div class="project-card__img" style="background:linear-gradient(135deg, #1a1f36 0%, #2d3352 70%, #3860d6 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
-            <svg width="120" height="80" viewBox="0 0 120 80" fill="none" style="opacity:0.25"><line x1="20" y1="40" x2="100" y2="40" stroke="#fff" stroke-width="1.5"/><line x1="60" y1="15" x2="60" y2="65" stroke="#fff" stroke-width="1.5"/><circle cx="60" cy="40" r="8" stroke="#4a7cf7" stroke-width="1.5"/><circle cx="60" cy="40" r="3" fill="#4a7cf7"/><line x1="30" y1="25" x2="30" y2="55" stroke="#fff" stroke-width="0.8" stroke-dasharray="3 3"/><line x1="90" y1="25" x2="90" y2="55" stroke="#fff" stroke-width="0.8" stroke-dasharray="3 3"/><path d="M45 20 L75 20" stroke="#10b981" stroke-width="1" stroke-dasharray="2 2"/><path d="M45 60 L75 60" stroke="#10b981" stroke-width="1" stroke-dasharray="2 2"/></svg>
-            <span style="position:absolute;bottom:12px;right:16px;color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.05em">EMBEDDED MOTION CONTROL</span>
+        <a href="projects/clinical-rag.html" class="project-card" style="text-decoration:none;color:inherit">
+          <div class="project-card__img" style="background:linear-gradient(135deg, #0f1221 0%, #1a1f36 50%, #2563eb 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+            <svg width="160" height="80" viewBox="0 0 160 80" fill="none" style="opacity:0.3"><circle cx="40" cy="40" r="14" stroke="#fff" stroke-width="1.2"/><circle cx="80" cy="20" r="10" stroke="#10b981" stroke-width="1.2"/><circle cx="80" cy="60" r="10" stroke="#10b981" stroke-width="1.2"/><circle cx="120" cy="40" r="14" stroke="#fff" stroke-width="1.2"/><line x1="54" y1="40" x2="70" y2="25" stroke="#fff" stroke-width="0.8"/><line x1="54" y1="40" x2="70" y2="55" stroke="#fff" stroke-width="0.8"/><line x1="90" y1="20" x2="106" y2="35" stroke="#fff" stroke-width="0.8"/><line x1="90" y1="60" x2="106" y2="45" stroke="#fff" stroke-width="0.8"/><text x="32" y="44" fill="#fff" font-size="6" font-family="Inter,sans-serif" opacity="0.7">Q</text><text x="115" y="44" fill="#fff" font-size="6" font-family="Inter,sans-serif" opacity="0.7">A</text></svg>
+            <span style="position:absolute;bottom:12px;right:16px;color:rgba(255,255,255,0.5);font-size:0.7rem;letter-spacing:0.05em">RETRIEVAL + SAFETY GUARDRAILS</span>
           </div>
           <div class="project-card__body">
             <div class="project-card__tags">
-              <span class="tag tag--navy">Embedded</span>
-              <span class="tag">C++</span>
-              <span class="tag tag--green">Lab Automation</span>
+              <span class="tag tag--navy">Clinical AI</span>
+              <span class="tag">RAG</span>
+              <span class="tag tag--green">Safety</span>
             </div>
-            <h3 class="project-card__title">PlateHandler Motion Control</h3>
+            <h3 class="project-card__title">Clinical RAG Assistant</h3>
             <p class="project-card__desc">
-              5-axis embedded motion control system for automated laboratory plate handling with H-Bot kinematics and collision detection.
+              Retrieval-augmented Q&amp;A system for clinical evidence with a 4-layer safety pipeline (source grounding, confidence scoring, hallucination detection, advice filtering).
             </p>
-            <p class="project-card__metric">ESP32 &middot; C++ firmware &middot; PyQt5 GUI &middot; Serial protocols</p>
+            <p class="project-card__metric">PubMedBERT + BM25 hybrid retrieval &middot; 0% hallucination rate &middot; 167 tests</p>
           </div>
         </a>
 
