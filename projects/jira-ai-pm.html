@@ -81,7 +81,7 @@
         <h3>Transcript Processing</h3>
         <p>
           Upload a meeting transcript (or paste raw notes), and the system uses an LLM to extract
-          structured action items &mdash; task descriptions, priorities, assignee suggestions, and
+          structured action items: task descriptions, priorities, assignee suggestions, and
           relevant context. The extraction prompt is tuned to pull out commitments and next steps,
           not just topics discussed.
         </p>
@@ -90,7 +90,7 @@
         <p>
           Before creating any ticket, the system checks for semantic similarity against existing
           Jira issues. Using 384-dimensional embeddings (all-MiniLM-L6-v2) stored in pgvector,
-          it computes cosine similarity to surface potential duplicates &mdash; even when they're
+          it computes cosine similarity to surface potential duplicates: even when they're
           worded completely differently. This cut duplicate tickets by roughly 50%.
         </p>
 
@@ -103,8 +103,8 @@
 
         <h3>Human-in-the-Loop Workflow</h3>
         <p>
-          Nothing goes to Jira without approval. Extracted tasks are presented for review &mdash;
-          edit descriptions, adjust priorities, dismiss false positives, resolve duplicates &mdash;
+          Nothing goes to Jira without approval. Extracted tasks are presented for review ,
+          edit descriptions, adjust priorities, dismiss false positives, resolve duplicates ,
           then batch-create with one click. The system handles the Jira API integration, credential
           encryption, and ticket formatting.
         </p>
