@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume | Laith Al-Jaouni</title>
+  <meta name="description" content="Laith Al-Jaouni — Biomedical ML Engineer. Clinical signal processing, DARPA Triage Challenge, physiological data pipelines, laboratory instrumentation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .resume {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--space-xl);
+    }
+
+    .resume-header {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .resume-header h1 {
+      font-size: 1.8rem;
+      margin-bottom: var(--space-xs);
+      letter-spacing: 0.04em;
+    }
+
+    .resume-header__contact {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    .resume-header__contact a {
+      color: var(--gray-600);
+    }
+
+    .resume-header__contact span {
+      margin: 0 0.3rem;
+      color: var(--gray-200);
+    }
+
+    .resume-section {
+      margin-bottom: var(--space-lg);
+    }
+
+    .resume-section__title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+      border-bottom: 1px solid var(--gray-200);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+
+    .resume-summary {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--navy-light);
+    }
+
+    .resume-skills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xs) var(--space-xl);
+      font-size: 0.85rem;
+    }
+
+    .resume-skills dt {
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+
+    .resume-skills dd {
+      color: var(--navy-light);
+      margin-bottom: var(--space-sm);
+      margin-left: 0;
+      line-height: 1.5;
+    }
+
+    .resume-role {
+      margin-bottom: var(--space-lg);
+    }
+
+    .resume-role__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .resume-role__title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .resume-role__dates {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      white-space: nowrap;
+    }
+
+    .resume-role__company {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+      margin-bottom: 2px;
+      font-style: italic;
+    }
+
+    .resume-role__context {
+      font-size: 0.82rem;
+      color: var(--gray-600);
+      margin-bottom: var(--space-sm);
+    }
+
+    .resume-role ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .resume-role li {
+      font-size: 0.85rem;
+      color: var(--navy-light);
+      line-height: 1.5;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 3px;
+    }
+
+    .resume-role li::before {
+      content: "\2022";
+      position: absolute;
+      left: 0;
+      color: var(--gray-400);
+    }
+
+    .resume-edu {
+      margin-bottom: var(--space-sm);
+    }
+
+    .resume-edu__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .resume-edu__degree {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .resume-edu__date {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+    }
+
+    .resume-edu__school {
+      font-size: 0.85rem;
+      color: var(--gray-600);
+    }
+
+    .resume-edu__detail {
+      font-size: 0.82rem;
+      color: var(--navy-light);
+      margin-top: 2px;
+    }
+
+    .resume-actions {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    @media print {
+      .nav, .footer, .resume-actions, .resume-web-header {
+        display: none !important;
+      }
+
+      body {
+        font-size: 10.5pt;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+      }
+
+      .resume {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .resume-header {
+        margin-bottom: 8pt;
+        padding-bottom: 6pt;
+      }
+
+      .resume-header h1 {
+        font-size: 16pt;
+      }
+
+      .resume-header__contact {
+        font-size: 9pt;
+      }
+
+      .resume-section {
+        margin-bottom: 10pt;
+      }
+
+      .resume-section__title {
+        font-size: 9pt;
+        margin-bottom: 6pt;
+        padding-bottom: 2pt;
+      }
+
+      .resume-summary {
+        font-size: 9.5pt;
+      }
+
+      .resume-skills {
+        font-size: 9pt;
+        gap: 2pt 16pt;
+      }
+
+      .resume-skills dd {
+        margin-bottom: 4pt;
+      }
+
+      .resume-role {
+        margin-bottom: 10pt;
+      }
+
+      .resume-role__title { font-size: 10pt; }
+      .resume-role__company { font-size: 9pt; }
+      .resume-role__dates { font-size: 8.5pt; }
+      .resume-role__context { font-size: 8.5pt; margin-bottom: 3pt; }
+
+      .resume-role li {
+        font-size: 9pt;
+        line-height: 1.35;
+        margin-bottom: 1.5pt;
+      }
+
+      .resume-edu__degree { font-size: 10pt; }
+      .resume-edu__school { font-size: 9pt; }
+      .resume-edu__detail { font-size: 8.5pt; }
+
+      .resume-page-break {
+        page-break-before: always;
+      }
+
+      a {
+        color: #000 !important;
+        text-decoration: none !important;
+      }
+
+      @page {
+        margin: 0.65in 0.75in;
+        size: letter;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects/index.html">Projects</a></li>
+        <li><a href="blog/index.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="resume-web-header" style="padding-top:calc(var(--nav-height) + var(--space-3xl));padding-bottom:var(--space-xl);background:var(--off-white)">
+    <div class="container" style="max-width:800px;text-align:center">
+      <p class="section__label">Resume</p>
+      <h1 class="section__title" style="margin-bottom:var(--space-md)">Laith Al-Jaouni</h1>
+      <p class="section__desc" style="max-width:480px;margin:0 auto var(--space-xl)">Biomedical ML Engineer. Clinical signal processing, physiological data pipelines, and production ML for healthcare.</p>
+      <div class="resume-actions">
+        <button onclick="window.print()" class="btn btn--primary">Save as PDF</button>
+        <a href="contact.html" class="btn btn--outline">Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="resume">
+
+    <div class="resume-header">
+      <h1>LAITH AL-JAOUNI</h1>
+      <p class="resume-header__contact">
+        <a href="mailto:laith.aljaouni@gmail.com">laith.aljaouni@gmail.com</a>
+        <span>|</span> Northern Virginia
+        <span>|</span> <a href="https://lal-jaouni.github.io">lal-jaouni.github.io</a>
+        <span>|</span> <a href="https://github.com/lal-jaouni">github.com/lal-jaouni</a>
+        <span>|</span> <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab">LinkedIn</a>
+        <span>|</span> U.S. Citizen
+      </p>
+    </div>
+
+    <!-- Summary -->
+    <div class="resume-section">
+      <h2 class="resume-section__title">Summary</h2>
+      <p class="resume-summary">
+        Biomedical ML engineer with hands-on experience across clinical machine learning, physiological signal processing, laboratory instrument automation, and scientific computing. Currently developing triage prediction systems from streaming multi-modal physiological data on a DARPA-funded national challenge. Background combines bench research (tissue engineering, AFM, immunofluorescence), embedded firmware (ESP32, C++), data engineering at scale (327 GB clinical datasets), and production ML (PyTorch, XGBoost). M.S. Biomedical Engineering, Virginia Tech (4.0 GPA, Summa Cum Laude).
+      </p>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="resume-section">
+      <h2 class="resume-section__title">Technical Skills</h2>
+      <dl class="resume-skills">
+        <div>
+          <dt>ML &amp; AI</dt>
+          <dd>PyTorch, XGBoost, LightGBM, CatBoost, Scikit-learn, TensorFlow, Optuna, SHAP, Ray</dd>
+        </div>
+        <div>
+          <dt>Signal Processing</dt>
+          <dd>SciPy, NumPy, Numba, PyWavelets, NeuroKit2, OpenCV, wavelet decomposition, sample entropy</dd>
+        </div>
+        <div>
+          <dt>Data Engineering</dt>
+          <dd>Pandas, PyArrow, Parquet, HDF5, PostgreSQL, SQLAlchemy, AWS S3, SageMaker</dd>
+        </div>
+        <div>
+          <dt>Scientific Computing</dt>
+          <dd>COMSOL Multiphysics (CFD, FEA), PySide6/Qt6, JAX, MATLAB, SolidWorks</dd>
+        </div>
+        <div>
+          <dt>Software Engineering</dt>
+          <dd>FastAPI, React, TypeScript, Docker, GitHub Actions, pytest, Pydantic</dd>
+        </div>
+        <div>
+          <dt>Embedded &amp; Hardware</dt>
+          <dd>C++ (ESP32/Arduino), RTOS, serial protocols, G-code, motion control</dd>
+        </div>
+        <div>
+          <dt>Clinical &amp; Regulatory</dt>
+          <dd>FDA SaMD, IEC 62304, EHR integration, HIPAA, IQ/OQ/PQ validation</dd>
+        </div>
+        <div>
+          <dt>Languages</dt>
+          <dd>Python (160K+ LOC), TypeScript (60K+ LOC), C++ (21K+ LOC), SQL</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Experience -->
+    <div class="resume-section">
+      <h2 class="resume-section__title">Experience</h2>
+
+      <!-- MSAI Labs -->
+      <div class="resume-role">
+        <div class="resume-role__header">
+          <span class="resume-role__title">ML Researcher</span>
+          <span class="resume-role__dates">Jan 2026 &ndash; Present</span>
+        </div>
+        <p class="resume-role__company">MSAI Labs &mdash; Remote</p>
+        <p class="resume-role__context">DARPA Triage Challenge: government-funded competition predicting life-saving interventions for trauma patients from streaming physiological data.</p>
+        <ul>
+          <li>Built end-to-end ML system processing 327 GB of multi-modal clinical data (EHR, physiological waveforms, vitals) from 7,000+ trauma patients across multiple hospital sites</li>
+          <li>Engineered 2,200+ features from physiological waveforms across 12 feature families (temporal, wavelet, entropy, clinical), with multi-phase selection reducing to 22-40 validated clusters per prediction target</li>
+          <li>Developed nested U-Net architecture for 1D waveform-to-waveform prediction (ABP from PPG/ECG); pre-trained on millions of external segments via novel lag-invariant loss function</li>
+          <li>Designed per-category model optimization with independent feature selection and Bayesian hyperparameter tuning (50 Optuna trials per target), outperforming global model approach</li>
+          <li>Recovered 94% patient coverage using quality-as-features approach vs. 60% with traditional hard quality gating</li>
+          <li>Conducted 56 formal experiments across 8 research objectives with config-driven reproducible framework and publication-quality Quarto reporting</li>
+        </ul>
+      </div>
+
+      <!-- MSD Research Scientist -->
+      <div class="resume-role resume-page-break">
+        <div class="resume-role__header">
+          <span class="resume-role__title">Research Scientist</span>
+          <span class="resume-role__dates">Jul 2024 &ndash; Present</span>
+        </div>
+        <p class="resume-role__company">Meso Scale Diagnostics &mdash; Rockville, MD</p>
+        <p class="resume-role__context">R&amp;D engineering for laboratory instrumentation and diagnostics platforms.</p>
+        <ul>
+          <li>Developed full-stack bioassay LIMS (60,839 LOC) with computational image processing pipeline achieving 20-100x speedup via Numba JIT on 8 hot-path functions</li>
+          <li>Engineered 10,637-LOC scientific Python platform coupling stiff-ODE solvers (Langmuir binding kinetics, Arrhenius extrapolation) with 7-tab PySide6 GUI for design-space exploration</li>
+          <li>Built unit-cell periodic COMSOL workflow delivering 10-50x CFD compute reduction for 3D microfluidic mixer simulation with mesh convergence validation</li>
+          <li>Shipped 5 generations of ESP32 firmware (21K LOC C++) with dual-core RTOS, I2S stepping, and per-unit calibration for 6-unit fluidic dispensing fleet</li>
+          <li>Delivered scientific evaluation platform (114 tests) with validated analytical SNR model for detector selection, matching measured hardware within +/-1.3 across 5 conditions</li>
+          <li>Validated biochemical kinetics model against two independent published experimental methods at 5 temperatures</li>
+        </ul>
+      </div>
+
+      <!-- MSD Automation -->
+      <div class="resume-role">
+        <div class="resume-role__header">
+          <span class="resume-role__title">Assay Automation Engineer</span>
+          <span class="resume-role__dates">Jun 2023 &ndash; Jun 2024</span>
+        </div>
+        <p class="resume-role__company">Meso Scale Diagnostics &mdash; Rockville, MD</p>
+        <ul>
+          <li>Reduced total system check runtime by 45 minutes through automated workflow optimization</li>
+          <li>Reduced field service engineer training time by 50-100% (2 days to 1-2 hours) via automated calibration processes</li>
+          <li>Achieved 99% reduction in data compilation time with custom Python and VB Script analysis tools</li>
+          <li>Reduced surface height variation by 72% (25 um to 7 um) through electrode dielectric stencil redesign</li>
+          <li>Eliminated false positive failures in PQ Washer Dispensing Test; reduced CVs by 33% via shaking and incubation optimization</li>
+        </ul>
+      </div>
+
+      <!-- VT -->
+      <div class="resume-role">
+        <div class="resume-role__header">
+          <span class="resume-role__title">Graduate Research Assistant</span>
+          <span class="resume-role__dates">Aug 2022 &ndash; May 2023</span>
+        </div>
+        <p class="resume-role__company">Virginia Tech &mdash; Blacksburg, VA</p>
+        <p class="resume-role__context">NSF Award 2141291: Deciphering Mechanisms of Mechanotransduction in Astrocyte Reactivity</p>
+        <ul>
+          <li>Designed and executed NSF-funded research investigating astrocyte-ECM mechanical interactions following simulated mild traumatic brain injury</li>
+          <li>Engineered novel 3D tissue culture platform (PDMS-based with ultra-thin spin-coated membrane) for blast exposure experiments</li>
+          <li>Characterized mechanical properties via AFM nanoindentation and rheology; demonstrated blast-exposed astrocytes stiffened surrounding matrix</li>
+          <li>Validated 3D hydrogel culture as more physiologically relevant than 2D monolayer; identified decreased laminin and collagen IV expression</li>
+        </ul>
+      </div>
+
+      <!-- QuidelOrtho -->
+      <div class="resume-role">
+        <div class="resume-role__header">
+          <span class="resume-role__title">R&amp;D Engineer</span>
+          <span class="resume-role__dates">May 2022 &ndash; Aug 2022</span>
+        </div>
+        <p class="resume-role__company">QuidelOrtho</p>
+        <p class="resume-role__context">R&amp;D engineering internship in in vitro diagnostics (IVD). Assay development and validation support.</p>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="resume-section">
+      <h2 class="resume-section__title">Education</h2>
+
+      <div class="resume-edu">
+        <div class="resume-edu__header">
+          <span class="resume-edu__degree">M.S. Biomedical Engineering</span>
+          <span class="resume-edu__date">May 2023</span>
+        </div>
+        <p class="resume-edu__school">Virginia Tech &ndash; Wake Forest School of Biomedical Engineering &amp; Sciences</p>
+        <p class="resume-edu__detail">4.0 GPA, Summa Cum Laude</p>
+        <p class="resume-edu__detail">Thesis: <em>In Vitro Astrocyte Remodeling of Extracellular Matrix Following Mild Traumatic Brain Injury</em></p>
+      </div>
+
+      <div class="resume-edu">
+        <div class="resume-edu__header">
+          <span class="resume-edu__degree">B.S. Biomedical Engineering</span>
+          <span class="resume-edu__date">May 2022</span>
+        </div>
+        <p class="resume-edu__school">Virginia Tech</p>
+        <p class="resume-edu__detail">3.87 GPA, Summa Cum Laude</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
