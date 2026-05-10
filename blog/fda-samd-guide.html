@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FDA Regulatory Pathways for AI/ML Medical Devices | Laith Al-Jaouni</title>
+  <meta name="description" content="A practical guide to FDA 510(k) submissions for AI/ML SaMD: predicate devices, PCCP plans, clinical validation, and the mistakes that delay clearance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container">
+      <a href="../index.html" class="nav__logo">Laith Al-Jaouni</a>
+      <ul class="nav__links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects/index.html">Projects</a></li>
+        <li><a href="index.html" class="active">Blog</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Blog Hero -->
+  <section class="section" style="padding-top:calc(var(--nav-height) + var(--space-3xl))">
+    <div class="container">
+      <div style="max-width:720px">
+        <p style="color:var(--gray-400);font-size:0.85rem;margin-bottom:var(--space-sm)">May 2026 &middot; Read time: ~12 min</p>
+        <h1 style="margin-bottom:var(--space-lg)">What AI/ML Founders Get Wrong About FDA 510(k) Submissions</h1>
+        <p style="color:var(--gray-600);font-size:1.05rem;line-height:1.75">
+          A practical guide to FDA regulatory pathways for AI/ML Software as a Medical Device. Predicate selection, the new PCCP guidance, clinical validation study design, and the documentation gaps that actually delay clearance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <section class="section section--alt">
+    <div class="container">
+      <div style="max-width:720px;color:var(--navy-light)">
+
+        <p>
+          Over 950 AI/ML-enabled medical devices have received FDA clearance. The vast majority used the 510(k) pathway. From the outside, 510(k) looks straightforward: find a predicate device, show substantial equivalence, submit. In practice, AI/ML submissions have a specific set of failure modes that delay clearance by months or kill submissions entirely.
+        </p>
+
+        <p>
+          I built an <a href="https://github.com/lal-jaouni/fda-samd-toolkit" target="_blank" rel="noopener">open-source FDA SaMD toolkit</a> to address the documentation gap -- templates, generators, and validation frameworks for the regulatory artifacts that don't exist in any public form. In the process, I studied dozens of cleared AI/ML 510(k) submissions, the December 2024 PCCP final guidance, and the January 2025 lifecycle management draft. This post covers what I learned.
+        </p>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>The Three FDA Pathways (And Why 510(k) Usually Wins)</h2>
+
+        <p>
+          FDA classifies medical devices -- including AI/ML software -- by risk level. Each risk level has a corresponding submission pathway:
+        </p>
+
+        <table style="width:100%;margin:var(--space-lg) 0;border-collapse:collapse;font-size:0.95rem">
+          <thead>
+            <tr style="border-bottom:2px solid var(--gray-100)">
+              <th style="text-align:left;padding:var(--space-md) var(--space-sm);font-weight:600;color:var(--navy)">Pathway</th>
+              <th style="text-align:left;padding:var(--space-md) var(--space-sm);font-weight:600;color:var(--navy)">Risk</th>
+              <th style="text-align:left;padding:var(--space-md) var(--space-sm);font-weight:600;color:var(--navy)">Timeline</th>
+              <th style="text-align:left;padding:var(--space-md) var(--space-sm);font-weight:600;color:var(--navy)">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--gray-100)">
+              <td style="padding:var(--space-md) var(--space-sm)"><strong>510(k)</strong></td>
+              <td style="padding:var(--space-md) var(--space-sm)">Class II (moderate)</td>
+              <td style="padding:var(--space-md) var(--space-sm)">3-6 months</td>
+              <td style="padding:var(--space-md) var(--space-sm)">$50K-300K</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-100)">
+              <td style="padding:var(--space-md) var(--space-sm)"><strong>De Novo</strong></td>
+              <td style="padding:var(--space-md) var(--space-sm)">Class I/II (novel)</td>
+              <td style="padding:var(--space-md) var(--space-sm)">9-18 months</td>
+              <td style="padding:var(--space-md) var(--space-sm)">$300K-1M</td>
+            </tr>
+            <tr>
+              <td style="padding:var(--space-md) var(--space-sm)"><strong>PMA</strong></td>
+              <td style="padding:var(--space-md) var(--space-sm)">Class III (high)</td>
+              <td style="padding:var(--space-md) var(--space-sm)">1-3 years</td>
+              <td style="padding:var(--space-md) var(--space-sm)">$1M-5M+</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          510(k) dominates AI/ML submissions for a practical reason: if a similar device already has clearance, you can reference it as a "predicate" and show your device is substantially equivalent. You need comparative data, not clinical trials. For a startup with 18 months of runway, the difference between 510(k) and PMA is existential.
+        </p>
+
+        <p>
+          De Novo is the path for novel devices that are low-to-moderate risk but have no predicate. It's slower and more expensive than 510(k), but once your De Novo is granted, it creates a new classification -- and now your device becomes a predicate that competitors can reference. Several landmark AI clearances (IDx-DR for diabetic retinopathy, Viz.ai for stroke detection) came through De Novo.
+        </p>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>Mistake #1: Picking the Wrong Predicate</h2>
+
+        <p>
+          Predicate selection is the highest-leverage decision in a 510(k) submission. Choose well and the submission practically writes itself. Choose poorly and FDA will reject your substantial equivalence argument before looking at your performance data.
+        </p>
+
+        <p>
+          A predicate must match on three dimensions:
+        </p>
+
+        <ul style="margin-bottom:var(--space-lg)">
+          <li><strong>Same intended use</strong> -- same clinical indication, patient population, and clinical setting</li>
+          <li><strong>Same technological characteristics</strong> -- same input type, output type, and general algorithm approach</li>
+          <li><strong>No new safety or effectiveness questions</strong> -- your device shouldn't introduce risks the predicate didn't have</li>
+        </ul>
+
+        <p>
+          The common mistake: choosing a predicate because it uses AI on the same organ system, even when the intended use is different. An ECG arrhythmia detector is not a valid predicate for an ECG-based heart failure risk predictor. Same input data, different clinical question, different regulatory argument.
+        </p>
+
+        <p>
+          The fix: search the FDA's 510(k) database (accessdata.fda.gov) for cleared devices with the same product code and read their summary. The openFDA API makes this programmatic -- search by device description and intended use, then rank by relevance. A good predicate has a narrow gap between its IFU (Indications for Use) and yours.
+        </p>
+
+        <p>
+          When no predicate exists, you need De Novo. Fighting it wastes time. FDA reviewers know the database better than you do, and they will tell you during the pre-submission meeting if your predicate argument doesn't hold.
+        </p>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>Mistake #2: Vague Indications for Use</h2>
+
+        <p>
+          The Indications for Use (IFU) statement is a legal document. FDA scrutinizes every word. The most common problem is vagueness.
+        </p>
+
+        <p>
+          A bad IFU:
+        </p>
+
+        <pre style="background:var(--off-white);border:1px solid var(--gray-100);border-radius:var(--border-radius);padding:var(--space-lg);overflow-x:auto;font-size:0.85rem;line-height:1.6;margin-bottom:var(--space-lg)"><code>ECG analysis device for heart monitoring</code></pre>
+
+        <p>
+          A good IFU:
+        </p>
+
+        <pre style="background:var(--off-white);border:1px solid var(--gray-100);border-radius:var(--border-radius);padding:var(--space-lg);overflow-x:auto;font-size:0.85rem;line-height:1.6;margin-bottom:var(--space-lg)"><code>The ECG Arrhythmia Detector is intended for automated detection of
+atrial fibrillation and ventricular ectopy from 12-lead
+electrocardiograms in adult patients (age 18-85) presenting to
+hospital and clinic settings. The device is intended as an adjunct
+to physician interpretation.</code></pre>
+
+        <p>
+          The difference: specific arrhythmias named, specific age range, specific clinical setting, and the critical phrase "adjunct to physician interpretation." That phrase tells FDA this is decision support, not autonomous diagnosis. It changes your risk classification.
+        </p>
+
+        <p>
+          Your IFU should be nearly identical to your predicate's IFU. If you're claiming substantial equivalence, a materially different IFU undercuts your own argument.
+        </p>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>Mistake #3: Ignoring the PCCP (December 2024 Guidance)</h2>
+
+        <p>
+          The Predetermined Change Control Plan is one of the most significant FDA guidance documents for AI/ML in years. Finalized in December 2024, it addresses the fundamental tension between ML and traditional device regulation: ML models are designed to change, but FDA clearance historically applies to a fixed device.
+        </p>
+
+        <p>
+          A PCCP defines, upfront in your submission, which modifications you plan to make post-clearance and how you will validate them -- without requiring a new 510(k) each time. Without a PCCP, every model retrain, every preprocessing change, and every threshold adjustment potentially requires a new submission. With one, you get a pre-approved envelope for iterating.
+        </p>
+
+        <p>
+          A PCCP must specify:
+        </p>
+
+        <ul style="margin-bottom:var(--space-lg)">
+          <li><strong>Change categories:</strong> what types of modifications you will make (retraining, preprocessing updates, threshold adjustments)</li>
+          <li><strong>Performance monitoring:</strong> what metrics you track, how often, and what thresholds trigger intervention</li>
+          <li><strong>Validation procedures:</strong> how each change type is validated before deployment</li>
+          <li><strong>Failure modes:</strong> what happens when metrics degrade, including rollback procedures</li>
+          <li><strong>Boundaries:</strong> what changes are explicitly not covered and require a new submission</li>
+        </ul>
+
+        <p>
+          The mistake: treating the PCCP as optional boilerplate. Teams either skip it entirely (losing the ability to iterate post-clearance) or write vague plans ("we monitor performance and fix issues as needed") that FDA rejects.
+        </p>
+
+        <p>
+          A good PCCP is specific. Instead of "we monitor performance," it says: "We track sensitivity daily on a rolling 1,000-sample window. Warning threshold: 0.90. Critical threshold: 0.85. Critical breach triggers automatic rollback within 5 seconds and pages the on-call engineer." FDA wants decision rules, not judgment calls.
+        </p>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>Mistake #4: Wrong Validation Study Design</h2>
+
+        <p>
+          Clinical validation answers a single question: does this algorithm actually work on patients? The study design you need depends on your pathway and risk level:
+        </p>
+
+        <table style="width:100%;margin:var(--space-lg) 0;border-collapse:collapse;font-size:0.95rem">
+          <thead>
+            <tr style="border-bottom:2px solid var(--gray-100)">
+              <th style="text-align:left;padding:var(--space-md) var(--space-sm);font-weight:600;color:var(--navy)">Submission Type</th>
+              <th style="text-align:left;padding:var(--space-md) var(--space-sm);font-weight:600;color:var(--navy)">Study Design</th>
+              <th style="text-align:left;padding:var(--space-md) var(--space-sm);font-weight:600;color:var(--navy)">Sample Size</th>
+              <th style="text-align:left;padding:var(--space-md) var(--space-sm);font-weight:600;color:var(--navy)">Timeline</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--gray-100)">
+              <td style="padding:var(--space-md) var(--space-sm)">510(k) with strong predicate</td>
+              <td style="padding:var(--space-md) var(--space-sm)">Retrospective</td>
+              <td style="padding:var(--space-md) var(--space-sm)">1,000-5,000</td>
+              <td style="padding:var(--space-md) var(--space-sm)">2-3 months</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-100)">
+              <td style="padding:var(--space-md) var(--space-sm)">510(k) without predicate</td>
+              <td style="padding:var(--space-md) var(--space-sm)">Prospective observational</td>
+              <td style="padding:var(--space-md) var(--space-sm)">~2,000</td>
+              <td style="padding:var(--space-md) var(--space-sm)">6-12 months</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--gray-100)">
+              <td style="padding:var(--space-md) var(--space-sm)">De Novo</td>
+              <td style="padding:var(--space-md) var(--space-sm)">Prospective or RCT</td>
+              <td style="padding:var(--space-md) var(--space-sm)">2,000-5,000</td>
+              <td style="padding:var(--space-md) var(--space-sm)">9-18 months</td>
+            </tr>
+            <tr>
+              <td style="padding:var(--space-md) var(--space-sm)">PMA (high-risk)</td>
+              <td style="padding:var(--space-md) var(--space-sm)">RCT</td>
+              <td style="padding:var(--space-md) var(--space-sm)">5,000+</td>
+              <td style="padding:var(--space-md) var(--space-sm)">18-24 months</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          The retrospective path is why 510(k) is so much faster. If a strong predicate exists, you can validate on historical data -- chart reviews, archived images, recorded signals. No IRB, no patient enrollment, no 12-month wait. The tradeoff is lower evidentiary weight: retrospective studies have selection bias and can't assess real-world clinical workflow.
+        </p>
+
+        <p>
+          Common pitfalls in clinical validation:
+        </p>
+
+        <ul style="margin-bottom:var(--space-lg)">
+          <li><strong>Fuzzy ground truth.</strong> "We compared to clinical impression" is not a reference standard. Define it precisely: "Blinded cardiologist review of ECG within 48 hours, unaware of device output."</li>
+          <li><strong>No sub-population analysis.</strong> FDA increasingly requires performance breakdowns by age, sex, and relevant clinical factors. If your device works at 95% sensitivity overall but drops to 80% in patients over 65, that's a safety issue.</li>
+          <li><strong>Excluding hard cases.</strong> Removing "low-quality inputs" from your validation set inflates your numbers and doesn't reflect production use. Either include them or define quality criteria prospectively.</li>
+          <li><strong>Undersized studies.</strong> Power calculations matter. If your target condition has 30% prevalence and you want 90% power to detect sensitivity above 0.90, you need roughly 1,800 patients. A biostatistician should be involved.</li>
+        </ul>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>Mistake #5: Documentation Debt</h2>
+
+        <p>
+          The 510(k) submission itself is fundamentally a documentation exercise. FDA reviewers don't run your code. They read your documents and decide whether you've demonstrated safety and effectiveness on paper.
+        </p>
+
+        <p>
+          A complete AI/ML 510(k) needs at minimum:
+        </p>
+
+        <ol style="margin-bottom:var(--space-lg)">
+          <li style="margin-bottom:var(--space-sm)"><strong>Indications for Use</strong> -- precise legal statement of what the device does, for whom, and where</li>
+          <li style="margin-bottom:var(--space-sm)"><strong>Device Description</strong> -- system architecture, algorithm overview, training data characterization, software specs</li>
+          <li style="margin-bottom:var(--space-sm)"><strong>Substantial Equivalence</strong> -- head-to-head comparison to predicate on intended use, technology, and performance</li>
+          <li style="margin-bottom:var(--space-sm)"><strong>Performance Data</strong> -- sensitivity, specificity, AUC with confidence intervals and sub-population breakdowns</li>
+          <li style="margin-bottom:var(--space-sm)"><strong>PCCP</strong> -- predetermined change control plan (if you want to iterate post-clearance)</li>
+          <li style="margin-bottom:var(--space-sm)"><strong>Risk Analysis</strong> -- failure modes, hazard analysis, risk mitigation</li>
+          <li style="margin-bottom:var(--space-sm)"><strong>Cybersecurity Documentation</strong> -- SBOM, threat model, data encryption, access controls</li>
+          <li style="margin-bottom:var(--space-sm)"><strong>Labeling</strong> -- instructions for use, warnings, contraindications</li>
+        </ol>
+
+        <p>
+          Most teams build the model first and the documentation last. This is backwards. The IFU defines what you're building. The validation protocol defines how you'll prove it works. The PCCP defines how you'll update it. These documents should be drafted before the first training run, not after the last one.
+        </p>
+
+        <p>
+          Documentation debt compounds. When a team waits until 8 weeks before filing to start their PCCP, they discover that their monitoring infrastructure doesn't support the metrics they need. When they write their device description, they realize they didn't log their training data provenance. When they build their substantial equivalence table, they realize their predicate comparison needs performance data they never collected.
+        </p>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>The Device Description: Harder Than It Looks</h2>
+
+        <p>
+          The device description section trips up engineering-heavy teams. FDA wants a specific format: system architecture, algorithm overview (architecture, training data, performance), software specs, user interface, and safety/security controls.
+        </p>
+
+        <p>
+          What FDA reviewers are looking for:
+        </p>
+
+        <ul style="margin-bottom:var(--space-lg)">
+          <li><strong>Training data transparency.</strong> Size, sources, demographic distribution, preprocessing steps. If you trained on 150,000 ECGs from two academic medical centers and MIMIC-III, say so. Disclose that your training population was 55% male, mean age 62, and 30% with known atrial fibrillation. FDA will ask about representation gaps.</li>
+          <li><strong>Clinical awareness.</strong> Describe the intended clinical workflow, not just the API spec. How does the ECG get to your system? What does the clinician see? How long does inference take? What happens when the device is uncertain?</li>
+          <li><strong>Honest limitations.</strong> "Requires >8 seconds of noise-free signal" shows you understand your device. "Not validated in patients with implanted pacemakers" shows you understand your clinical context. Limitations are features, not weaknesses -- they tell FDA you've done the failure mode analysis.</li>
+        </ul>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>What Changes After Clearance</h2>
+
+        <p>
+          Clearance is not the finish line. Post-market obligations for AI/ML devices are growing:
+        </p>
+
+        <ul style="margin-bottom:var(--space-lg)">
+          <li><strong>Performance monitoring.</strong> You need infrastructure to continuously validate your model in production. Track the metrics from your validation study on real-world data. Detect data drift. Alert when performance degrades.</li>
+          <li><strong>PCCP compliance.</strong> If you submitted a PCCP, every change must follow your documented procedures. Every retraining event gets logged -- dataset size, composition, before/after metrics, deployment decision. This is an audit trail.</li>
+          <li><strong>Adverse event reporting.</strong> Medical device manufacturers must report device-related adverse events to FDA. For AI/ML devices, this includes missed diagnoses, false alerts that cause clinical harm, and system failures during clinical use.</li>
+          <li><strong>Cybersecurity updates.</strong> The June 2025 FDA guidance makes software bill of materials (SBOM) effectively mandatory. You need to track and update every dependency.</li>
+        </ul>
+
+        <p>
+          The teams that plan for post-market from the start -- building monitoring into their architecture, automating PCCP-compliant retraining pipelines, maintaining SBOMs -- spend less time on compliance and more time on their product.
+        </p>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>The Regulatory Consultant Question</h2>
+
+        <p>
+          Should you hire a regulatory consultant? Probably, but know what you're paying for.
+        </p>
+
+        <p>
+          Regulatory consultants charge $300-500/hr. At that rate, assembling boilerplate -- PCCP structure, 510(k) section scaffolding, submission formatting -- is expensive busywork. The high-value work is strategic: predicate selection strategy, pre-submission meeting preparation, study design review, and navigating FDA reviewer feedback.
+        </p>
+
+        <p>
+          The documentation scaffolding can and should be templated. That's why I built the <a href="https://github.com/lal-jaouni/fda-samd-toolkit" target="_blank" rel="noopener">FDA SaMD Toolkit</a>: PCCP generation from YAML configs, 510(k) section templates, FDA-extended model cards, predicate discovery against the openFDA database, and a 58-item readiness checklist. It handles the structure so your regulatory team can focus on the substance.
+        </p>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>Practical Takeaways</h2>
+
+        <p>
+          For teams preparing AI/ML 510(k) submissions:
+        </p>
+
+        <ol style="margin-bottom:var(--space-lg)">
+          <li style="margin-bottom:var(--space-md)"><strong>Start with the IFU, not the model.</strong> Your Indications for Use define the clinical question, the patient population, and the clinical setting. Everything downstream -- training data, validation protocol, predicate selection -- flows from this statement.</li>
+          <li style="margin-bottom:var(--space-md)"><strong>Select your predicate before writing code.</strong> Search the openFDA 510(k) database. Read the predicate's summary. If the IFU gap is too large, consider De Novo. The pre-submission meeting is the place to validate your predicate choice with FDA.</li>
+          <li style="margin-bottom:var(--space-md)"><strong>Write the PCCP early.</strong> The PCCP forces you to design your monitoring infrastructure, define your retraining procedures, and set your performance thresholds. Doing this after deployment is retrofitting.</li>
+          <li style="margin-bottom:var(--space-md)"><strong>Plan sub-population analysis from the start.</strong> FDA cares about equity. Collect demographic data during training and validation. Size your study to have adequate N per subgroup.</li>
+          <li style="margin-bottom:var(--space-md)"><strong>Define ground truth precisely.</strong> A vague reference standard invalidates your entire validation study. Specify who adjudicates, how blinding works, and what criteria they use.</li>
+          <li style="margin-bottom:var(--space-md)"><strong>Document training data provenance.</strong> Sources, dates, inclusion/exclusion criteria, demographics, preprocessing steps. You will need this for the device description and FDA will ask questions.</li>
+          <li><strong>Use the pre-submission meeting.</strong> FDA offers pre-submission meetings specifically so you can validate your predicate, study design, and submission strategy before investing months of work. Use it.</li>
+        </ol>
+
+        <hr style="border:none;border-top:1px solid var(--gray-100);margin:var(--space-3xl) 0">
+
+        <h2>Resources</h2>
+
+        <ul style="margin-bottom:var(--space-3xl)">
+          <li><a href="https://github.com/lal-jaouni/fda-samd-toolkit" target="_blank" rel="noopener">FDA SaMD Toolkit</a> -- open-source templates, generators, and validation frameworks for 510(k) AI/ML submissions</li>
+          <li><a href="https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-and-machine-learning-aiml-software-medical-device" target="_blank" rel="noopener">FDA AI/ML Action Plan</a> -- FDA's overarching framework for AI/ML regulation</li>
+          <li><a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/predetermined-change-control-plans-machine-learning-enabled-medical-devices" target="_blank" rel="noopener">PCCP Final Guidance (Dec 2024)</a> -- the full 25-page guidance document</li>
+          <li><a href="https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm" target="_blank" rel="noopener">FDA 510(k) Database</a> -- searchable database of all cleared devices</li>
+        </ul>
+
+        <p style="color:var(--gray-400);font-size:0.9rem;margin-top:var(--space-4xl)">
+          The toolkit is open source: <a href="https://github.com/lal-jaouni/fda-samd-toolkit" target="_blank" rel="noopener">FDA SaMD Toolkit on GitHub</a>
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__links">
+        <a href="mailto:laith.aljaouni@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/laith-al-jaouni-7135151ab" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/lal-jaouni" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      <p>Laith Al-Jaouni &middot; McLean, VA</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
