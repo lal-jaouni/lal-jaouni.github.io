@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clinical RAG Assistant | Laith Al-Jaouni</title>
-  <meta name="description" content="Production-grade retrieval-augmented generation system for clinical Q&A with 4-layer safety guardrails, achieving 0% hallucination rate.">
+  <meta name="description" content="Production-grade retrieval-augmented generation system for clinical Q&A with 4-layer safety guardrails and source grounding verification.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
       <a href="index.html" class="project-hero__back">&larr; All Projects</a>
       <h1 class="project-hero__title">Clinical RAG Assistant</h1>
       <p class="project-hero__subtitle">
-        Safety-first retrieval-augmented generation for clinical decision support. Four independent safety layers produce a 0% hallucination rate by refusing answers the system can't ground in evidence. Built for regulated environments where a hallucinated claim about drug dosing has real consequences.
+        Safety-first retrieval-augmented generation for clinical decision support. Four independent safety layers reduce hallucination by refusing answers the system can't ground in evidence. Built for regulated environments where a hallucinated claim about drug dosing has real consequences.
       </p>
       <div class="project-hero__meta">
         <div class="project-meta__item">
@@ -205,7 +205,7 @@
         </p>
 
         <p>
-          <strong>Deployment Complexity:</strong> Running a clinical RAG system in production means HIPAA-compliant infrastructure, audit logging, access controls, and monitoring. The ML pipeline is often the easy part. The compliance and operations layer is where most projects stall. This system uses local-only LLM inference (Ollama) so clinical queries never leave the network.
+          <strong>Deployment Complexity:</strong> Running a clinical RAG system in production means compliant infrastructure, audit logging, access controls, and monitoring. The ML pipeline is often the easy part. The compliance and operations layer is where most projects stall. This system uses local-only LLM inference (Ollama) so clinical queries never leave the network.
         </p>
 
         <h2>Tech Stack</h2>

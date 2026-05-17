@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DARPA Triage Challenge | Laith Al-Jaouni</title>
-  <meta name="description" content="ML pipeline predicting life-saving interventions from streaming physiological waveforms across 7,000+ trauma patients for the DARPA Triage Challenge.">
+  <meta name="description" content="ML pipeline predicting life-saving interventions from streaming multi-modal physiological data across multiple trauma centers for the DARPA Triage Challenge.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -52,11 +52,11 @@
         </div>
         <div class="project-meta__item">
           <strong>Data Scale</strong>
-          327 GB &middot; 7,000+ patients &middot; multiple trauma centers
+          Multi-modal clinical data &middot; multiple trauma centers
         </div>
         <div class="project-meta__item">
           <strong>Scope</strong>
-          56 experiments across 8 research objectives
+          Systematic experiment framework across multiple research objectives
         </div>
       </div>
     </div>
@@ -91,11 +91,11 @@
           </tr>
           <tr style="border-bottom:1px solid var(--gray-100)">
             <td style="padding:0.75rem 1rem"><strong>Data Scale</strong></td>
-            <td style="padding:0.75rem 1rem">327 GB of multi-modal clinical data, 7,000+ patients</td>
+            <td style="padding:0.75rem 1rem">Multi-modal clinical data across multiple trauma centers</td>
           </tr>
           <tr style="border-bottom:1px solid var(--gray-100)">
             <td style="padding:0.75rem 1rem"><strong>Feature Engineering</strong></td>
-            <td style="padding:0.75rem 1rem">2,200+ features from physiological waveforms and EHR</td>
+            <td style="padding:0.75rem 1rem">12 feature families from physiological waveforms and EHR</td>
           </tr>
           <tr style="border-bottom:1px solid var(--gray-100)">
             <td style="padding:0.75rem 1rem"><strong>Transfer Learning</strong></td>
@@ -115,7 +115,7 @@
           </tr>
           <tr>
             <td style="padding:0.75rem 1rem"><strong>Experiment Scale</strong></td>
-            <td style="padding:0.75rem 1rem">56 experiments across 8 research objectives</td>
+            <td style="padding:0.75rem 1rem">Systematic experiments across multiple research objectives</td>
           </tr>
         </table>
 
@@ -139,7 +139,7 @@
           recovered patient coverage from 60% to 94% while maintaining prediction accuracy.
         </p>
 
-        <h3>Feature Engineering (2,200+ Features)</h3>
+        <h3>Feature Engineering</h3>
         <p>
           Designed 12 distinct feature families capturing different aspects of hemodynamic physiology:
         </p>
@@ -159,8 +159,8 @@
         </ul>
         <p>
           A multi-phase feature selection pipeline (mutual information filtering, correlation
-          clustering, SHAP stability analysis, permutation importance validation) reduced 2,200
-          features to 22&ndash;40 validated clusters per prediction target.
+          clustering, SHAP stability analysis, permutation importance validation) reduced the full
+          feature set to 22&ndash;40 validated clusters per prediction target.
         </p>
 
         <h3>Transfer Learning for Waveform Prediction</h3>
@@ -229,7 +229,7 @@
 
         <h2>Experiment Rigor</h2>
         <p>
-          Conducted dozens of systematic experiments across multiple research objectives, each with
+          Conducted systematic experiments across multiple research objectives, each with
           formal configuration, reproducible seeds, and tracked results. Built a config-driven
           experiment framework enabling rapid hypothesis testing with schema validation and
           automated reporting.
@@ -259,7 +259,7 @@
           <div class="skill-category">
             <h3 class="skill-category__title">Feature Engineering</h3>
             <p class="skill-category__items">
-              2,200+ features, 12 feature families, MI filtering,
+              12 feature families, MI filtering,
               correlation clustering, temporal trend analysis
             </p>
           </div>
@@ -274,7 +274,7 @@
             <h3 class="skill-category__title">Infrastructure</h3>
             <p class="skill-category__items">
               AWS SageMaker, S3, Docker, Quarto,
-              pytest, ruff, 15,000+ LOC across 50+ modules
+              pytest, ruff, modular codebase
             </p>
           </div>
           <div class="skill-category">
